@@ -10,16 +10,21 @@
 /*
  * Connecter is a collection of connecting methods and store static object data
  */
-class Connecter
+class Connecter : public QObject
 {
     Q_OBJECT
 public:
     Connecter();
+    void show();
 private:
     Sprite targetSprite;
     Previewer previewer;
     FileSystem filesystem;
     SpriteEditor spriteEditor;
+    Viewer viewer;
+    void connectViewToPreviewer();
+    void connectViewToSpriteEditor();
+    void connectViewToFilesystem();
 };
 
 #endif // CONNECTER_H

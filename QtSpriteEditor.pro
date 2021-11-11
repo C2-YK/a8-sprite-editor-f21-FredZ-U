@@ -12,7 +12,6 @@ SOURCES += \
     connecter.cpp \
     filesystem.cpp \
     frame.cpp \
-    layer.cpp \
     main.cpp \
     previewer.cpp \
     sprite.cpp \
@@ -23,7 +22,6 @@ HEADERS += \
     connecter.h \
     filesystem.h \
     frame.h \
-    layer.h \
     previewer.h \
     sprite.h \
     spriteeditor.h \

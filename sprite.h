@@ -7,20 +7,25 @@ class Sprite
 {
 public:
     Sprite();
+    Sprite(int height, int width);
     ~Sprite();
     Sprite(const Sprite& other);
     Sprite& operator=(Sprite other);
-
-    QList<Frame*> frames;
-    int editing;
-    int maxFrame;
     //add an empty frame on current editing position iff editing position is no pointer
     //user has to delete frame then new frame to prevent overwrite
-    void newFrame();//target editing
-    void deleteFrame();//target editing
-    void swapFrames(int, int); //swap the frames on the index positions prevent int == int
+    bool newFrame();
+    bool deleteFrame();//target editing, return success?
     void setEditingTarget(int); //editing = input
-    void setMax(int);//maxFrame = input
+    const Frame* getCurrentFrame();
+    void setMax(int);//maxFrame = input, and contruct a new frames
+    void moveFrame(int from, int to);
+    void resize(int height, int width);
+private:
+    QList<Frame*> frames;
+    int editingFrame;
+    int maxFrame;
+    int height;
+    int width;
 
 
 };
