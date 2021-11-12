@@ -25,5 +25,14 @@ void Connecter::connectViewToPreviewer(){
     QObject::connect(&viewer, &Viewer::setPlaybackSpeed, &previewer, &Previewer::setPlaybackSpeed);
 }
 void Connecter::connectViewToSpriteEditor(){
-
+    //frame setting
+    QObject::connect(&viewer, &Viewer::addFrame, &spriteEditor, &SpriteEditor::addFrame);
+    QObject::connect(&viewer, &Viewer::deleteFrame, &spriteEditor, &SpriteEditor::deleteFrame);
+    QObject::connect(&viewer, &Viewer::moveFrame, &spriteEditor, &SpriteEditor::moveFrame);
+    QObject::connect(&viewer, &Viewer::setEditingFrame, &spriteEditor, &SpriteEditor::setEditingFrame);
+    //tool setting
+    QObject::connect(&viewer, &Viewer::useToolOn, &spriteEditor, &SpriteEditor::useToolOn);
+    QObject::connect(&viewer, &Viewer::switchToolTo, &spriteEditor, &SpriteEditor::switchToolTo);
+    QObject::connect(&viewer, &Viewer::setBrushColor, &spriteEditor, &SpriteEditor::setBrushColor);
+    QObject::connect(&viewer, &Viewer::setBrushSize, &spriteEditor, &SpriteEditor::setBrushSize);
 }

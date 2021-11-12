@@ -12,7 +12,7 @@ public:
     Previewer();
     void setSprite(Sprite*);
 public slots:
-    void updateEditorWindow();
+    void updateEditorWindow(QImage updateImage);
     void setPlaybackSpeed(int speed);
     void startPlayback(bool);
 signals:
@@ -21,7 +21,6 @@ private:
     Sprite* targetSprite;
     int playbackSpeed;
     int playbackPointer;
-    int editingPointer;
 };
 
 #endif // PREVIEWER_H

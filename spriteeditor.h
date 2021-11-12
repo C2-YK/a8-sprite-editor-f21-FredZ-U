@@ -3,6 +3,7 @@
 #include "sprite.h"
 #include <QObject>
 #include <QColor>
+#include <QVector2D>
 
 class SpriteEditor : public QObject
 {
@@ -11,14 +12,24 @@ public:
     SpriteEditor();
     void setSprite(Sprite*);
 public slots:
+    //frame setting
     void setEditingFrame(int);
+    void addFrame();
+    void deleteFrame();
+    void moveFrame(int from, int to);
+    //tool setting
     void setBrushColor(QColor);
     void setBrushSize(int size);
+    void useToolOn(QVector2D position);
+    void switchToolTo(int toolIndex);
 private:
     Sprite* target;
     QColor brushColor;
-    QVector<int> brushAlpha; //size = brushSize^2
+    int toolSwitch;
     int brushSize;
+    void paintOn(QVector2D position);
+    void eraseOn(QVector2D position);
+    void colorPickOn(QVector2D position);
 
 };
 

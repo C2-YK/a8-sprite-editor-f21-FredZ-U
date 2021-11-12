@@ -13,7 +13,7 @@ public:
     Sprite& operator=(Sprite other);
     //add an empty frame on current editing position iff editing position is no pointer
     //user has to delete frame then new frame to prevent overwrite
-    bool newFrame();
+    bool addFrame();
     bool deleteFrame();//target editing, return success?
     void setEditingTarget(int); //editing = input
     const Frame* getCurrentFrame();

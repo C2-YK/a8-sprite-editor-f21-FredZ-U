@@ -23,14 +23,16 @@ public slots:
 signals:
     void setPlaybackSpeed(int speed);
     void startPlayback(bool);
-    void addFrame(int index);
+    void addFrame();
     void moveFrame(int from, int to);
+    void deleteFrame();
     void setEditingFrame(int);
     void setMaxFramesSize(int size);
     void resize(int height, int width);
     void setBrushColor(QColor);
     void setBrushSize(int size);
-    void drawValueOn(QVector2D position);
+    void useToolOn(QVector2D position);
+    void switchToolTo(int toolIndex);
     void saveSprite(QString filename);
     void loadJason(QString filepath);
 private:
