@@ -13,3 +13,16 @@ Viewer::~Viewer()
     delete ui;
 }
 
+void Viewer::playback(const QImage &frameImage){
+
+}
+void Viewer::updateEditor(const QImage &frameImage){
+
+}
+void Viewer::saveCallback(bool success){
+
+}
+void Viewer::loadCallback(bool success){
+
+}
+
