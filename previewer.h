@@ -12,11 +12,11 @@ public:
     Previewer();
     void setSprite(Sprite*);
 public slots:
-    void updateEditorWindow(QImage updateImage);
+    void updateEditorWindow(const QImage& updateImage);
     void setPlaybackSpeed(int speed);
     void startPlayback(bool);
 signals:
-    void playback(QImage);
+    void playback(const QImage&);
 private:
     Sprite* targetSprite;
     int playbackSpeed;

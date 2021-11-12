@@ -20,6 +20,8 @@ public:
 public slots:
     void playback(const QImage &frameImage);
     void updateEditor(const QImage &frameImage);
+    void saveCallback(bool success);
+    void loadCallback(bool success);
 signals:
     void setPlaybackSpeed(int speed);
     void startPlayback(bool);

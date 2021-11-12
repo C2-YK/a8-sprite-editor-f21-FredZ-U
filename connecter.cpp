@@ -18,6 +18,8 @@ void Connecter::show(){
 void Connecter::connectViewToFilesystem(){
     QObject::connect(&viewer, &Viewer::saveSprite, &filesystem, &FileSystem::saveSprite);
     QObject::connect(&viewer, &Viewer::loadJason, &filesystem, &FileSystem::loadJason);
+    QObject::connect(&filesystem, &FileSystem::loadCallback, &viewer, &Viewer::loadCallback);
+    QObject::connect(&filesystem, &FileSystem::saveCallback, &viewer, &Viewer::saveCallback);
 }
 void Connecter::connectViewToPreviewer(){
     QObject::connect(&previewer, &Previewer::playback, &viewer, &Viewer::playback);

@@ -16,7 +16,9 @@ public:
     bool addFrame();
     bool deleteFrame();//target editing, return success?
     void setEditingTarget(int); //editing = input
-    const Frame* getCurrentFrame();
+    const QImage& getPlaybackImage(int FrameIndex);
+    const QImage& getEditingImage();
+    Frame& getCurrentFrame();
     void setMax(int);//maxFrame = input, and contruct a new frames
     void moveFrame(int from, int to);
     void resize(int height, int width);
