@@ -8,6 +8,7 @@ class Frame
 public:
     Frame();
     Frame(int height, int width);
+    Frame(int height, int width, QImage image);
     ~Frame();
     Frame(const Frame& other);
     Frame& operator=(Frame other);

@@ -8,6 +8,7 @@ class Sprite
 public:
     Sprite();
     Sprite(int height, int width);
+    Sprite(int height, int width, QList<Frame*> frames, int maxFrame);
     ~Sprite();
     Sprite(const Sprite& other);
     Sprite& operator=(Sprite other);
