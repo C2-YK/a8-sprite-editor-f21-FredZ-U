@@ -4,6 +4,10 @@
 #include <QObject>
 #include <QString>
 #include "sprite.h"
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+
 class FileSystem : public QObject
 {
     Q_OBJECT
