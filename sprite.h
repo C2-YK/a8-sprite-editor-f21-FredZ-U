@@ -23,12 +23,23 @@ public:
     void setMax(int);//maxFrame = input, and contruct a new frames
     void moveFrame(int from, int to);
     void resize(int height, int width);
+    QList<Frame*> getFrames();
+    int getMaxFrame();
+    int getHeight();
+    int getWidth();
+
+
 private:
     QList<Frame*> frames;
     int editingFrame;
     int maxFrame;
     int height;
     int width;
+
+    //height
+    //width
+    //vector of frames
+    //frame size
 
 
 };

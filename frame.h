@@ -17,6 +17,10 @@ public:
     void paintOn(QVector2D position, QColor brushColor, int brushSize);
     void eraseOn(QVector2D position, int brushSize);
     QColor colorPickOn(QVector2D position);
+    int getHeight();
+    int getWidth();
+
+
 private:
     QImage image;
     int height;
