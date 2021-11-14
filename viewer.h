@@ -5,6 +5,9 @@
 #include <QImage>
 #include <QColor>
 #include <QVector2D>
+#include <QPixmap>
+#include <QPainter>
+#include <QMouseEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
@@ -17,6 +20,7 @@ class Viewer : public QMainWindow
 public:
     Viewer(QWidget *parent = nullptr);
     ~Viewer();
+    void paintEvent(QPaintEvent *);
 public slots:
     void playback(const QImage &frameImage);
     void updateEditor(const QImage &frameImage);
@@ -39,5 +43,11 @@ signals:
     void loadJason(QString filepath);
 private:
     Ui::Viewer *ui;
+    QPixmap canvas;
+    QPoint lastPoint;
+    QPoint endPoint;
+    void mousePressEvent(QMouseEvent *);
+    void mouseMoveEvent(QMouseEvent *);
+    void mouseReleaseEvent(QMouseEvent *);
 };
 #endif // VIEWER_H
