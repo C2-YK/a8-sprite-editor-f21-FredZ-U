@@ -2,8 +2,8 @@
 
 Sprite::Sprite()
 {
-    height = 4;
-    width = 6;
+    height = 400;
+    width = 600;
     maxFrame = 10;
 }
 

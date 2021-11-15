@@ -20,16 +20,16 @@ public slots:
     //tool setting
     void setBrushColor(QColor);
     void setBrushSize(int size);
-    void useToolOn(QVector2D position);
+    void useToolOn(QPoint position);
     void switchToolTo(int toolIndex);
 private:
     Sprite* target;
     QColor brushColor;
     int toolSwitch;
     int brushSize;
-    void paintOn(QVector2D position);
-    void eraseOn(QVector2D position);
-    void colorPickOn(QVector2D position);
+    void paintOn(QPoint position);
+    void eraseOn(QPoint position);
+    void colorPickOn(QPoint position);
 
 };
 

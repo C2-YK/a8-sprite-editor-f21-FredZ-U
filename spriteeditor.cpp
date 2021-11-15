@@ -35,7 +35,7 @@ void SpriteEditor::setBrushSize(int size){
     brushSize = size;
 }
 
-void SpriteEditor::useToolOn(QVector2D position){
+void SpriteEditor::useToolOn(QPoint position){
     if(toolSwitch == 0){
         paintOn(position);
     }else if(toolSwitch == 1){
@@ -51,12 +51,12 @@ void SpriteEditor::switchToolTo(int tool){
 /*
  * private helper
  */
-void SpriteEditor::paintOn(QVector2D position){
+void SpriteEditor::paintOn(QPoint position){
     target->getCurrentFrame().paintOn(position, brushColor, brushSize);
 }
-void SpriteEditor::eraseOn(QVector2D position){
+void SpriteEditor::eraseOn(QPoint position){
     target->getCurrentFrame().eraseOn(position, brushSize);
 }
-void SpriteEditor::colorPickOn(QVector2D position){
+void SpriteEditor::colorPickOn(QPoint position){
     brushColor = target->getCurrentFrame().colorPickOn(position);
 }

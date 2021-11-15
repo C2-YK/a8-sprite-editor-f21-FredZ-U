@@ -5,9 +5,9 @@
 #include <QImage>
 #include <QColor>
 #include <QVector2D>
-#include <QPixmap>
 #include <QPainter>
 #include <QMouseEvent>
+#include <QPixmap>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
@@ -37,15 +37,14 @@ signals:
     void resize(int height, int width);
     void setBrushColor(QColor);
     void setBrushSize(int size);
-    void useToolOn(QVector2D position);
+    void useToolOn(QPoint position);
     void switchToolTo(int toolIndex);
     void saveSprite(QString filename);
     void loadJason(QString filepath);
 private:
     Ui::Viewer *ui;
     QPixmap canvas;
-    QPoint lastPoint;
-    QPoint endPoint;
+    QImage image;
     void mousePressEvent(QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
     void mouseReleaseEvent(QMouseEvent *);

@@ -41,20 +41,22 @@ const QImage& Frame::getImage(){
 void Frame::resize(int height, int width){
 
 }
-void Frame::paintOn(QVector2D position, QColor brushColor, int brushSize){
-    image.setPixel((int)(position.x()), (int)(position.y()), brushColor.rgba());
+void Frame::paintOn(QPoint position, QColor brushColor, int brushSize){
 
-    for(int x= (x-brushSize)/2; x = ; x++){
-        for(int y=0; y = brushSize; y++){
+    int x = position.x();
+    int y = position.y();
 
+    for(int i= x-brushSize/2; i <= brushSize/2; i++){
+        for(int j = y-brushSize/2; j <= brushSize/2; j++){
+            image.setPixel(i, j, brushColor.rgba());
         }
     }
 
 
 }
-void Frame::eraseOn(QVector2D position, int brushSize){
+void Frame::eraseOn(QPoint position, int brushSize){
 
 }
-QColor Frame::colorPickOn(QVector2D position){
+QColor Frame::colorPickOn(QPoint position){
 
 }

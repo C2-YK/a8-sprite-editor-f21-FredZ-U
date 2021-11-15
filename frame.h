@@ -14,9 +14,9 @@ public:
     Frame& operator=(Frame other);
     const QImage& getImage();
     void resize(int height, int width);
-    void paintOn(QVector2D position, QColor brushColor, int brushSize);
-    void eraseOn(QVector2D position, int brushSize);
-    QColor colorPickOn(QVector2D position);
+    void paintOn(QPoint position, QColor brushColor, int brushSize);
+    void eraseOn(QPoint position, int brushSize);
+    QColor colorPickOn(QPoint position);
     int getHeight();
     int getWidth();
 
