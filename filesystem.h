@@ -7,7 +7,7 @@
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
-
+#include <QJsonArray>
 class FileSystem : public QObject
 {
     Q_OBJECT
@@ -22,6 +22,9 @@ signals:
     void saveCallback(bool success);
 private:
     Sprite* sprite;
+    void spriteWriter(QJsonObject &json);
+    void frameWriter(QJsonObject &json);
+    void qImageWriter(QJsonObject &json);
 };
 
 #endif // FILESYSTEM_H
