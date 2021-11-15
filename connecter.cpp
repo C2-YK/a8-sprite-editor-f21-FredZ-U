@@ -2,6 +2,7 @@
 
 Connecter::Connecter()
 {
+    //targetSprite = Sprite(300, 500);
     //set target sprite
     filesystem.setSprite(&targetSprite);
     previewer.setSprite(&targetSprite);

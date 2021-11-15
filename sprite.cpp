@@ -2,7 +2,7 @@
 
 Sprite::Sprite()
 {
-    height = 400;
+    height = 800;
     width = 600;
     maxFrame = 10;
     editingFrame = 0;
@@ -18,6 +18,10 @@ Sprite::Sprite(int height, int width){
     this->width = width;
     maxFrame = 10;
     frames = QList<Frame*>(maxFrame);
+    for(int i = 0; i < maxFrame; i++){
+        frames[i] = nullptr;
+    }
+    frames[editingFrame] = new Frame(height, width);
 }
 
 Sprite::~Sprite(){
@@ -27,7 +31,11 @@ Sprite::~Sprite(){
 }
 
 Sprite& Sprite::operator=(Sprite other){
-
+    std::swap(this->height, other.height);
+    std::swap(this->width, other.width);
+    std::swap(this->maxFrame, other.maxFrame);
+    std::swap(this->frames, other.frames);
+    return *this;
 }
 
 bool Sprite::addFrame(){
