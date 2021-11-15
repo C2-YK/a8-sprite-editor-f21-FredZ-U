@@ -43,6 +43,7 @@ void SpriteEditor::useToolOn(QPoint position){
     }else{
         colorPickOn(position);
     }
+    emit updatePreviewer();
 }
 
 void SpriteEditor::switchToolTo(int tool){

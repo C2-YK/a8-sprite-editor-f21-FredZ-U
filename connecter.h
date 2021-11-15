@@ -25,6 +25,7 @@ private:
     void connectViewToPreviewer();
     void connectViewToSpriteEditor();
     void connectViewToFilesystem();
+    void connectSpriteEditorToPreviewer();
 };
 
 #endif // CONNECTER_H

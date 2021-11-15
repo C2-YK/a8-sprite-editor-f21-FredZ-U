@@ -23,6 +23,7 @@ void Connecter::connectViewToFilesystem(){
 }
 void Connecter::connectViewToPreviewer(){
     QObject::connect(&previewer, &Previewer::playback, &viewer, &Viewer::playback);
+    QObject::connect(&previewer, &Previewer::updateEditorWindow, &viewer, &Viewer::updateEditor);
     QObject::connect(&viewer, &Viewer::startPlayback, &previewer, &Previewer::startPlayback);
     QObject::connect(&viewer, &Viewer::setPlaybackSpeed, &previewer, &Previewer::setPlaybackSpeed);
 }
@@ -37,4 +38,8 @@ void Connecter::connectViewToSpriteEditor(){
     QObject::connect(&viewer, &Viewer::switchToolTo, &spriteEditor, &SpriteEditor::switchToolTo);
     QObject::connect(&viewer, &Viewer::setBrushColor, &spriteEditor, &SpriteEditor::setBrushColor);
     QObject::connect(&viewer, &Viewer::setBrushSize, &spriteEditor, &SpriteEditor::setBrushSize);
+}
+
+void Connecter::connectSpriteEditorToPreviewer(){
+    QObject::connect(&spriteEditor, &SpriteEditor::updatePreviewer, &previewer, &Previewer::updatePreviewer);
 }

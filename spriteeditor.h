@@ -22,6 +22,8 @@ public slots:
     void setBrushSize(int size);
     void useToolOn(QPoint position);
     void switchToolTo(int toolIndex);
+signals:
+    void updatePreviewer();
 private:
     Sprite* target;
     QColor brushColor;
