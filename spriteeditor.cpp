@@ -1,4 +1,5 @@
 #include "spriteeditor.h"
+#include <QtDebug>
 
 SpriteEditor::SpriteEditor()
 {

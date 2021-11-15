@@ -10,6 +10,7 @@ Connecter::Connecter()
     connectViewToFilesystem();
     connectViewToPreviewer();
     connectViewToSpriteEditor();
+    connectSpriteEditorToPreviewer();
 }
 
 void Connecter::show(){

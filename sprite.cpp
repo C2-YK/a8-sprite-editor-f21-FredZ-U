@@ -5,10 +5,12 @@ Sprite::Sprite()
     height = 400;
     width = 600;
     maxFrame = 10;
+    editingFrame = 0;
     frames = QList<Frame*>(maxFrame);
     for(int i = 0; i < maxFrame; i++){
         frames[i] = nullptr;
     }
+    frames[editingFrame] = new Frame(height, width);
 }
 
 Sprite::Sprite(int height, int width){
@@ -76,4 +78,7 @@ void Sprite::resize(int height, int width){
             frames[i]->resize(height, width);
         }
     }
+}
+int Sprite::getMaxFrame(){
+   return maxFrame;
 }

@@ -1,4 +1,5 @@
 #include "previewer.h"
+#include <QDebug>
 
 Previewer::Previewer()
 {
@@ -28,5 +29,6 @@ void Previewer::playbackLoop(){
 }
 
 void Previewer::updatePreviewer(){
+    qDebug()<<"update";
     emit updateEditorWindow(targetSprite->getEditingImage());
 }

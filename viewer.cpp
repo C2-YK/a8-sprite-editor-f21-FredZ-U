@@ -43,7 +43,6 @@ void Viewer::loadCallback(bool success){
 
 void Viewer::mousePressEvent(QMouseEvent * event){
     if(event->button() == Qt::LeftButton){//if mouse left button clicked
-
         emit useToolOn(event -> pos());//get mouse position as start point
     }
 

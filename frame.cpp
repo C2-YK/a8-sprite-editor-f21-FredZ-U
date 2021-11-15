@@ -1,5 +1,5 @@
 #include "frame.h"
-
+#include <QtDebug>
 Frame::Frame()
 {
     height = 200;
@@ -45,7 +45,7 @@ void Frame::paintOn(QPoint position, QColor brushColor, int brushSize){
 
     int x = position.x();
     int y = position.y();
-
+    qDebug()<<image.;
     for(int i= x-brushSize/2; i <= brushSize/2; i++){
         for(int j = y-brushSize/2; j <= brushSize/2; j++){
             image.setPixel(i, j, brushColor.rgba());
