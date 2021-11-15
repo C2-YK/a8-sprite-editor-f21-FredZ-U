@@ -46,22 +46,32 @@ void FileSystem:: spriteWriter(QJsonObject &json){
     foreach(Frame* frame, sprite->getFrames())
     {
         QJsonObject frameObject;
-        frameWriter(frameObject);
+        QImage target = frame->getImage();
+        frameWriter(frameObject,target);
         frameArray.append(frameObject);
     }
     json["frames"] = frameArray;
 
 }
 
-void FileSystem:: frameWriter(QJsonObject &json)
+void FileSystem:: frameWriter(QJsonObject &json, const QImage& image)
 {
-    QJsonObject qImageObject;
-    qImageWriter(qImageObject);
-    json["frame"] = qImageObject;
+    std::vector<std::vector<std::vector<int>>> colorMatrix = getColorMatrix(image);
+    json["frame"] = QString::fromStdString(std::string(colorMatrix.begin(),colorMatrix.end()));
 }
 
-void FileSystem:: qImageWriter(QJsonObject &json)
+std::vector<std::vector<std::vector<int>>> FileSystem:: getColorMatrix(const QImage &image)
 {
-    QJsonArray pixelArray;
-    foreach(pixel)
+    int width =image.width();
+    int height = image.height();
+    std::vector<std::vector<std::vector<int>>> result;
+    for(int i = 0; i < width; i++)
+    {
+        for(int j =0; j < height; j++ )
+        {
+            std::vector<int> color = {image.pixelColor(i,j).alpha(),image.pixelColor(i,j).red(),image.pixelColor(i,j).green(),image.pixelColor(i,j).blue()};
+            result[i][j] = color;
+        }
+    }
+    return result;
 }
