@@ -3,12 +3,10 @@
 
 #include <QObject>
 #include <QString>
+#include "sprite.h"
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QJsonArray>
-#include <vector>
-#include "sprite.h"
 
 class FileSystem : public QObject
 {
@@ -24,9 +22,6 @@ signals:
     void saveCallback(bool success);
 private:
     Sprite* sprite;
-    void spriteWriter(QJsonObject &json);
-    void frameWriter(QJsonObject &json,const QImage &image);
-    std::vector<std::vector<std::vector<int>>> getColorMatrix(const QImage &image);
 };
 
 #endif // FILESYSTEM_H
