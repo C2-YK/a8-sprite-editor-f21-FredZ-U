@@ -14,7 +14,7 @@ public:
     Sprite& operator=(Sprite other);
     //add an empty frame on current editing position iff editing position is no pointer
     //user has to delete frame then new frame to prevent overwrite
-    bool addFrame();
+    void addFrame();
     void deleteFrame();//target editing, return success?
     void setEditingTarget(int); //editing = input
     const QImage& getPlaybackImage(int FrameIndex);
@@ -23,7 +23,7 @@ public:
     void setMax(int);//maxFrame = input, and contruct a new frames
     void moveFrame(int from, int to);
     void resize(int height, int width);
-    QList<Frame*> getFrames();
+    const QList<Frame*> getFrames();
     int getMaxFrame();
     int getHeight();
     int getWidth();
@@ -35,13 +35,6 @@ private:
     int maxFrame;
     int height;
     int width;
-
-    //height
-    //width
-    //vector of frames
-    //frame size
-
-
 };
 
 #endif // SPRITE_H

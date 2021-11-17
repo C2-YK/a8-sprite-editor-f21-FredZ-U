@@ -13,7 +13,7 @@ Viewer::Viewer(QWidget *parent)
     connect(ui->pencilButton, &QPushButton::released, this, [this](){
         emit switchToolTo(0);});
     connect(ui->eraserButton, &QPushButton::released, this, [this](){
-        emit switchToolTo(1);});
+        emit switchToolTo(3);});
     connect(ui->colorPickerButton, &QPushButton::released, this, [this](){
         emit switchToolTo(2);});
 }

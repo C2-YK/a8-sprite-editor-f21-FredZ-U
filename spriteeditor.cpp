@@ -4,7 +4,6 @@
 SpriteEditor::SpriteEditor()
 {
     toolSwitch = 0;
-    brushSize = 1;
     brushColor = QColor(0,0,255,255);
 }
 
@@ -32,17 +31,23 @@ void SpriteEditor::setBrushColor(QColor color){
     brushColor = color;
 }
 
-void SpriteEditor::setBrushSize(int size){
-    brushSize = size;
-}
-
 void SpriteEditor::useToolOn(QPoint position){
+    //if out of range ignore
+    if(position.x() >= target->getCurrentFrame().getWidth() || position.x() < 0){
+        return;
+    }
+    if(position.y() >= target->getCurrentFrame().getHeight() || position.y() < 0){
+        return;
+    }
+    //if changed, update
     if(toolSwitch == 0){
         paintOn(position);
     }else if(toolSwitch == 1){
         eraseOn(position);
-    }else{
+    }else if(toolSwitch==2){
         colorPickOn(position);
+    }else{
+        bucketOn(position);
     }
     emit updatePreviewer();
 }
@@ -54,11 +59,14 @@ void SpriteEditor::switchToolTo(int tool){
  * private helper
  */
 void SpriteEditor::paintOn(QPoint position){
-    target->getCurrentFrame().paintOn(position, brushColor, brushSize);
+    target->getCurrentFrame().paintOn(position, brushColor);
 }
 void SpriteEditor::eraseOn(QPoint position){
-    target->getCurrentFrame().eraseOn(position, brushSize);
+    target->getCurrentFrame().eraseOn(position);
 }
 void SpriteEditor::colorPickOn(QPoint position){
     brushColor = target->getCurrentFrame().colorPickOn(position);
+}
+void SpriteEditor::bucketOn(QPoint position){
+    target->getCurrentFrame().bucketOn(position, brushColor);
 }
