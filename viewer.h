@@ -27,6 +27,7 @@ public slots:
     void updateEditor(const QImage &frameImage, int editingTarget);
     void saveCallback(bool success);
     void loadCallback(bool success);
+    void onSliderValueChangedSlot(int value);
 signals:
     void setPlaybackSpeed(int speed);
     void startPlayback(bool);

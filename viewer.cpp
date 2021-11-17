@@ -26,6 +26,7 @@ Viewer::Viewer(QWidget *parent)
         emit switchToolTo(2);});
     connect(ui->bucketButton, &QPushButton::released, this, [this](){
         emit switchToolTo(3);});
+    connect(ui->FPSSlider, &QSlider::valueChanged, this, &Viewer::onSliderValueChangedSlot);
 }
 
 Viewer::~Viewer()
@@ -118,4 +119,8 @@ void Viewer::addItemToFrameList(){
     ui->listWidget->addItem(item);
     ui->listWidget->setIconSize(QSize(50,50));
     frameList.append(item);
+}
+
+void Viewer::onSliderValueChangedSlot(int value){
+    ui->FPSLabel->setText( QString("%1 FPS").arg(value));
 }
