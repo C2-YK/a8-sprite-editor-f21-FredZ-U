@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>res/big-paint-brush.png</file>
+        <file>res/color-picker.png</file>
+        <file>res/eraser.png</file>
+    </qresource>
+</RCC>
