@@ -19,7 +19,6 @@ public slots:
     void moveFrame(int from, int to);
     //tool setting
     void setBrushColor(QColor);
-    void setBrushSize(int size);
     void useToolOn(QPoint position);
     void switchToolTo(int toolIndex);
 signals:
@@ -28,10 +27,10 @@ private:
     Sprite* target;
     QColor brushColor;
     int toolSwitch;
-    int brushSize;
     void paintOn(QPoint position);
     void eraseOn(QPoint position);
     void colorPickOn(QPoint position);
+    void bucketOn(QPoint position);
 
 };
 

@@ -40,7 +40,6 @@ void Connecter::connectViewToSpriteEditor(){
     QObject::connect(&viewer, &Viewer::useToolOn, &spriteEditor, &SpriteEditor::useToolOn);
     QObject::connect(&viewer, &Viewer::switchToolTo, &spriteEditor, &SpriteEditor::switchToolTo);
     QObject::connect(&viewer, &Viewer::setBrushColor, &spriteEditor, &SpriteEditor::setBrushColor);
-    QObject::connect(&viewer, &Viewer::setBrushSize, &spriteEditor, &SpriteEditor::setBrushSize);
 }
 
 void Connecter::connectSpriteEditorToPreviewer(){
