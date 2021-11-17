@@ -45,6 +45,9 @@ private:
     Ui::Viewer *ui;
     QPixmap canvas;
     QImage image;
+    QPoint drawingPivot;
+    int pixelSize;
+    int pixelOffset;
     void mousePressEvent(QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
     void mouseReleaseEvent(QMouseEvent *);

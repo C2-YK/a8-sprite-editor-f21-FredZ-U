@@ -2,8 +2,8 @@
 
 Sprite::Sprite()
 {
-    height = 800;
-    width = 600;
+    height = 16;
+    width = 16;
     maxFrame = 10;
     editingFrame = 0;
     frames = QList<Frame*>(maxFrame);
