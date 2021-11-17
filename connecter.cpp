@@ -12,6 +12,7 @@ Connecter::Connecter()
     connectViewToPreviewer();
     connectViewToSpriteEditor();
     connectSpriteEditorToPreviewer();
+    spriteEditor.updatePreviewer();
 }
 
 void Connecter::show(){

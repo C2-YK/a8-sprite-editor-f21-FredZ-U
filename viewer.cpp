@@ -45,12 +45,12 @@ void Viewer::loadCallback(bool success){
 
 
 void Viewer::mousePressEvent(QMouseEvent * event){
-    QPoint screenPos = event -> pos();
-    QPoint pixelPos = QPoint((screenPos.x()-drawingPivot.x())/(pixelSize+pixelOffset), (screenPos.y()-drawingPivot.y())/(pixelSize+pixelOffset));
-    qDebug()<< pixelPos;
-    qDebug()<< event -> pos();
     if(event->button() == Qt::LeftButton){//if mouse left button clicked
-        emit useToolOn(event -> pos());//get mouse position as start point
+        QPoint screenPos = event -> pos();
+        pixelPos = QPoint((screenPos.x()-drawingPivot.x())/(pixelSize+pixelOffset), (screenPos.y()-drawingPivot.y())/(pixelSize+pixelOffset));
+        emit useToolOn(pixelPos);//get mouse position as start point
+    }else if(event->button() == Qt::RightButton){
+        movePivot = event->pos();
     }
 
 }
@@ -59,9 +59,17 @@ void Viewer::mousePressEvent(QMouseEvent * event){
 
 void Viewer::mouseMoveEvent(QMouseEvent * event){
     if(event->buttons()&Qt::LeftButton){//if mouse left button clicked and move at same time
+        QPoint screenPos = event -> pos();
+        if(pixelPos != QPoint((screenPos.x()-drawingPivot.x())/(pixelSize+pixelOffset), (screenPos.y()-drawingPivot.y())/(pixelSize+pixelOffset))){
+            pixelPos = QPoint((screenPos.x()-drawingPivot.x())/(pixelSize+pixelOffset), (screenPos.y()-drawingPivot.y())/(pixelSize+pixelOffset));
+            emit useToolOn(pixelPos);
+            qDebug()<<"usetool";
+        }
 
-        emit useToolOn(event -> pos());//get mouse position as end point
-
+    }else{
+        drawingPivot += event->pos() - movePivot;
+        movePivot = event->pos();
+        repaint();
     }
 
 

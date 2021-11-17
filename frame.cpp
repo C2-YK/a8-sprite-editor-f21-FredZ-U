@@ -61,16 +61,13 @@ void Frame::resize(int height, int width){
     }
 }
 void Frame::paintOn(QPoint position, QColor brushColor, int brushSize){
-
-    int x = position.x();
-    int y = position.y();
-    for(int i= x-brushSize/2; i <= brushSize/2; i++){
-        for(int j = y-brushSize/2; j <= brushSize/2; j++){
-            image.setPixel(i, j, brushColor.rgba());
-        }
+    if(position.x() >= width || position.x() < 0){
+        return;
     }
-
-
+    if(position.y() >= height || position.y() < 0){
+        return;
+    }
+    image.setPixel(position.x(), position.y(), brushColor.rgba());
 }
 void Frame::eraseOn(QPoint position, int brushSize){
 

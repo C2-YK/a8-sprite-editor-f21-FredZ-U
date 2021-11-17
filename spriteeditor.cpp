@@ -5,7 +5,7 @@ SpriteEditor::SpriteEditor()
 {
     toolSwitch = 0;
     brushSize = 1;
-    brushColor = QColor(255,255,255,255);
+    brushColor = QColor(0,0,255,255);
 }
 
 void SpriteEditor::setSprite(Sprite *target){

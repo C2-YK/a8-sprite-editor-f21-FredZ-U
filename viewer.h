@@ -46,6 +46,8 @@ private:
     QPixmap canvas;
     QImage image;
     QPoint drawingPivot;
+    QPoint movePivot;
+    QPoint pixelPos;
     int pixelSize;
     int pixelOffset;
     void mousePressEvent(QMouseEvent *);
