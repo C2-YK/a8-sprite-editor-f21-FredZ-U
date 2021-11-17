@@ -52,6 +52,6 @@ private:
     int pixelOffset;
     void mousePressEvent(QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
-    void mouseReleaseEvent(QMouseEvent *);
+    void wheelEvent(QWheelEvent *);
 };
 #endif // VIEWER_H
