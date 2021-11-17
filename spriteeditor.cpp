@@ -13,6 +13,7 @@ void SpriteEditor::setSprite(Sprite *target){
 
 void SpriteEditor::setEditingFrame(int editing){
     target->setEditingTarget(editing);
+    emit updatePreviewer();
 }
 
 void SpriteEditor::addFrame(){

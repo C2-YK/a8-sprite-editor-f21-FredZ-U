@@ -10,15 +10,11 @@ Viewer::Viewer(QWidget *parent)
     pixelSize = 20;
     pixelOffset = 1;
 
-    QListWidgetItem *item = new QListWidgetItem;
-    item->setText("test");
-    item->setData(0, frameList.size());
-    ui->listWidget->addItem(item);
-    ui->listWidget->setIconSize(QSize(16,16));
-    frameList.append(item);
+    addItemToFrameList();
 
     connect(ui->addFrame, &QPushButton::released, this, &Viewer::on_addFrameButton_Clicked);
-
+    connect(ui->listWidget, &QListWidget::itemClicked, this, [this](QListWidgetItem * item){
+        emit setEditingFrame(item->data(0).toInt());});
     connect(ui->pencilButton, &QPushButton::released, this, [this](){
         emit switchToolTo(0);});
     connect(ui->eraserButton, &QPushButton::released, this, [this](){
@@ -109,12 +105,14 @@ void Viewer::on_colorButton_clicked()
 }
 
 void Viewer::on_addFrameButton_Clicked(){
+    addItemToFrameList();
+    emit addFrame();
+}
+void Viewer::addItemToFrameList(){
     QListWidgetItem *item = new QListWidgetItem;
     item->setText("test");
     item->setData(0, frameList.size());
     ui->listWidget->addItem(item);
     ui->listWidget->setIconSize(QSize(16,16));
     frameList.append(item);
-    emit addFrame();
 }
-

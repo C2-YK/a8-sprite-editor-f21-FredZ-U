@@ -58,5 +58,6 @@ private:
     void mousePressEvent(QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
     void wheelEvent(QWheelEvent *);
+    void addItemToFrameList();
 };
 #endif // VIEWER_H
