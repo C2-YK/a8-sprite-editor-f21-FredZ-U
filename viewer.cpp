@@ -9,6 +9,13 @@ Viewer::Viewer(QWidget *parent)
     drawingPivot = QPoint(40,40);
     pixelSize = 20;
     pixelOffset = 1;
+
+    connect(ui->pencilButton, &QPushButton::released, this, [this](){
+        emit switchToolTo(0);});
+    connect(ui->eraserButton, &QPushButton::released, this, [this](){
+        emit switchToolTo(1);});
+    connect(ui->colorPickerButton, &QPushButton::released, this, [this](){
+        emit switchToolTo(2);});
 }
 
 Viewer::~Viewer()
