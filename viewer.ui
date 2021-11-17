@@ -36,6 +36,16 @@
     <property name="text">
      <string>Add Frame</string>
     </property>
+    <property name="icon">
+     <iconset resource="res.qrc">
+      <normaloff>:/icon/res/plus-symbol-button.png</normaloff>:/icon/res/plus-symbol-button.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>8</width>
+      <height>8</height>
+     </size>
+    </property>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
@@ -122,7 +132,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="FPSlabel">
+   <widget class="QLabel" name="FPSLabel">
     <property name="geometry">
      <rect>
       <x>770</x>
@@ -148,31 +158,39 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="playButton">
+   <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>10</y>
-      <width>80</width>
-      <height>21</height>
+      <x>750</x>
+      <y>0</y>
+      <width>31</width>
+      <height>101</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Play</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pauseBotton">
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>30</y>
-      <width>80</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>pause</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QPushButton" name="playButton">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="res.qrc">
+         <normaloff>:/icon/res/play-button-arrowhead.png</normaloff>:/icon/res/play-button-arrowhead.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pauseBotton">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="res.qrc">
+         <normaloff>:/icon/res/pause.png</normaloff>:/icon/res/pause.png</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -181,7 +199,7 @@
      <x>0</x>
      <y>0</y>
      <width>929</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

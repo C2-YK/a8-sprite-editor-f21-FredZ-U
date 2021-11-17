@@ -5,5 +5,9 @@
         <file>res/eraser.png</file>
         <file>res/paint-bucket.png</file>
         <file>res/paint-board-and-brush.png</file>
+        <file>res/pause.png</file>
+        <file>res/play-button-arrowhead.png</file>
+        <file>res/minus.png</file>
+        <file>res/plus-symbol-button.png</file>
     </qresource>
 </RCC>
