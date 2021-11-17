@@ -17,6 +17,7 @@ void SpriteEditor::setEditingFrame(int editing){
 
 void SpriteEditor::addFrame(){
     target->addFrame();
+    emit updatePreviewer();
 }
 
 void SpriteEditor::deleteFrame(){

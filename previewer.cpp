@@ -29,5 +29,5 @@ void Previewer::playbackLoop(){
 }
 
 void Previewer::updatePreviewer(){
-    emit updateEditorWindow(targetSprite->getEditingImage());
+    emit updateEditorWindow(targetSprite->getEditingImage(), targetSprite->getEditingFrame());
 }

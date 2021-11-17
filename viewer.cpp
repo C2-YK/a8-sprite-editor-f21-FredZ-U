@@ -10,6 +10,15 @@ Viewer::Viewer(QWidget *parent)
     pixelSize = 20;
     pixelOffset = 1;
 
+    QListWidgetItem *item = new QListWidgetItem;
+    item->setText("test");
+    item->setData(0, frameList.size());
+    ui->listWidget->addItem(item);
+    ui->listWidget->setIconSize(QSize(16,16));
+    frameList.append(item);
+
+    connect(ui->addFrame, &QPushButton::released, this, &Viewer::on_addFrameButton_Clicked);
+
     connect(ui->pencilButton, &QPushButton::released, this, [this](){
         emit switchToolTo(0);});
     connect(ui->eraserButton, &QPushButton::released, this, [this](){
@@ -28,9 +37,11 @@ Viewer::~Viewer()
 void Viewer::playback(const QImage &frameImage){
 
 }
-void Viewer::updateEditor(const QImage &frameImage){
-
+void Viewer::updateEditor(const QImage &frameImage, int editingTarget){
     image = frameImage;
+    QPixmap p = QPixmap::fromImage(frameImage);
+    p.scaled(10, 10);
+    frameList[editingTarget]->setIcon(QIcon(p));
     update();
 
 }
@@ -95,5 +106,15 @@ void Viewer::on_colorButton_clicked()
 {
     QColor color = QColorDialog::getColor(Qt::white);
     emit setBrushColor(color);
+}
+
+void Viewer::on_addFrameButton_Clicked(){
+    QListWidgetItem *item = new QListWidgetItem;
+    item->setText("test");
+    item->setData(0, frameList.size());
+    ui->listWidget->addItem(item);
+    ui->listWidget->setIconSize(QSize(16,16));
+    frameList.append(item);
+    emit addFrame();
 }
 

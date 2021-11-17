@@ -112,3 +112,6 @@ int Sprite::getHeight(){
 int Sprite::getWidth(){
     return width;
 }
+int Sprite::getEditingFrame(){
+    return editingFrame;
+}

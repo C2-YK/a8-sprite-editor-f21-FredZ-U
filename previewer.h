@@ -17,7 +17,7 @@ public slots:
     void startPlayback(bool);
     void updatePreviewer();
 signals:
-    void updateEditorWindow(const QImage& updateImage);
+    void updateEditorWindow(const QImage& updateImage, int editingTarget);
     void playback(const QImage&);
 private:
     Sprite* targetSprite;

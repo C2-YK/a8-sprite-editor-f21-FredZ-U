@@ -27,7 +27,7 @@ public:
     int getMaxFrame();
     int getHeight();
     int getWidth();
-
+    int getEditingFrame();
 
 private:
     QList<Frame*> frames;
