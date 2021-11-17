@@ -31,14 +31,10 @@ Frame::Frame(int height, int width, QImage image){
 
 }
 
-
-Frame::~Frame(){
-
-}
-
 Frame::Frame(const Frame& other){
     height = other.height;
     width = other.width;
+    image = QImage(other.image);
 
 }
 Frame& Frame::operator=(Frame other){
@@ -50,6 +46,12 @@ Frame& Frame::operator=(Frame other){
 const QImage& Frame::getImage(){
     return image;
 }
+int Frame::getHeight(){
+    return height;
+}
+int Frame::getWidth(){
+    return width;
+}
 void Frame::resize(int height, int width){
     QImage replacement = QImage(width, height, QImage::Format_ARGB32);
     for(int i = 0; i < this->width; i++){
@@ -60,21 +62,34 @@ void Frame::resize(int height, int width){
         }
     }
 }
-void Frame::paintOn(QPoint position, QColor brushColor, int brushSize){
-
-    int x = position.x();
-    int y = position.y();
-    for(int i= x-brushSize/2; i <= brushSize/2; i++){
-        for(int j = y-brushSize/2; j <= brushSize/2; j++){
-            image.setPixel(i, j, brushColor.rgba());
-        }
-    }
-
-
+void Frame::paintOn(QPoint position, QColor brushColor){
+    image.setPixel(position.x(), position.y(), brushColor.rgba());
 }
-void Frame::eraseOn(QPoint position, int brushSize){
-
+void Frame::eraseOn(QPoint position){
+    image.setPixel(position.x(), position.y(), QColor(0,0,0,0).rgba());
 }
 QColor Frame::colorPickOn(QPoint position){
-
+    return image.pixelColor(position.x(), position.y());
+}
+void Frame::bucketOn(QPoint position, QColor brushColor){
+    QColor target = image.pixelColor(position.x(), position.y());
+    if(brushColor == target){
+        return;
+    }
+    bucketRecursive(position.x(), position.y(), target, brushColor);
+}
+void Frame::bucketRecursive(int x, int y, QColor target, QColor overWrite){
+    if(x<0||x>=width){
+        return;
+    }
+    if(y<0||y>=height){
+        return;
+    }
+    if(image.pixelColor(x, y) == target){
+        image.setPixelColor(x,y,overWrite);
+        bucketRecursive(x-1, y, target, overWrite);
+        bucketRecursive(x, y+1, target, overWrite);
+        bucketRecursive(x+1, y, target, overWrite);
+        bucketRecursive(x, y-1, target, overWrite);
+    }
 }

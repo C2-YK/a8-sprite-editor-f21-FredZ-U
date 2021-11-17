@@ -6,6 +6,18 @@ Viewer::Viewer(QWidget *parent)
     , ui(new Ui::Viewer)
 {
     ui->setupUi(this);
+    drawingPivot = QPoint(40,40);
+    pixelSize = 20;
+    pixelOffset = 1;
+
+    connect(ui->pencilButton, &QPushButton::released, this, [this](){
+        emit switchToolTo(0);});
+    connect(ui->eraserButton, &QPushButton::released, this, [this](){
+        emit switchToolTo(1);});
+    connect(ui->colorPickerButton, &QPushButton::released, this, [this](){
+        emit switchToolTo(2);});
+    connect(ui->bucketButton, &QPushButton::released, this, [this](){
+        emit switchToolTo(3);});
 }
 
 Viewer::~Viewer()
@@ -30,20 +42,13 @@ void Viewer::loadCallback(bool success){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 void Viewer::mousePressEvent(QMouseEvent * event){
     if(event->button() == Qt::LeftButton){//if mouse left button clicked
-        emit useToolOn(event -> pos());//get mouse position as start point
+        QPoint screenPos = event -> pos();
+        pixelPos = QPoint((screenPos.x()-drawingPivot.x())/(pixelSize+pixelOffset), (screenPos.y()-drawingPivot.y())/(pixelSize+pixelOffset));
+        emit useToolOn(pixelPos);//get mouse position as start point
+    }else if(event->button() == Qt::RightButton){
+        movePivot = event->pos();
     }
 
 }
@@ -52,23 +57,24 @@ void Viewer::mousePressEvent(QMouseEvent * event){
 
 void Viewer::mouseMoveEvent(QMouseEvent * event){
     if(event->buttons()&Qt::LeftButton){//if mouse left button clicked and move at same time
-
-        emit useToolOn(event -> pos());//get mouse position as end point
-
+        QPoint screenPos = event -> pos();
+        if(pixelPos != QPoint((screenPos.x()-drawingPivot.x())/(pixelSize+pixelOffset), (screenPos.y()-drawingPivot.y())/(pixelSize+pixelOffset))){
+            pixelPos = QPoint((screenPos.x()-drawingPivot.x())/(pixelSize+pixelOffset), (screenPos.y()-drawingPivot.y())/(pixelSize+pixelOffset));
+            emit useToolOn(pixelPos);
+        }
+    }else{
+        drawingPivot += event->pos() - movePivot;
+        movePivot = event->pos();
+        repaint();
     }
 
 
 }
 
-
-void Viewer::mouseReleaseEvent(QMouseEvent * event){
-    if(event->button() == Qt::LeftButton){//if mouse left button clicked
-
-        emit useToolOn(event -> pos());//get mouse position as end point
-
-    }
-
-
+void Viewer::wheelEvent(QWheelEvent * event){
+    //scale function
+    pixelSize += event->angleDelta().y()/120;
+    repaint();
 }
 
 
@@ -76,6 +82,18 @@ void Viewer::paintEvent(QPaintEvent *){
 
 
     QPainter painter(this);
-    painter.drawImage(0,0, image);//set canvas
+    int pos = pixelSize+pixelOffset;
+    for(int i = 0; i < image.width(); i++){
+        for(int j = 0; j < image.height(); j++){
+            painter.fillRect(i * pos + drawingPivot.x(), j * pos + drawingPivot.y(), pixelSize, pixelSize, image.pixelColor(i, j));
+        }
+    }
 
 }
+
+void Viewer::on_colorButton_clicked()
+{
+    QColor color = QColorDialog::getColor(Qt::white);
+    emit setBrushColor(color);
+}
+

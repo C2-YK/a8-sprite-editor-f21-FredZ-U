@@ -8,6 +8,7 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QPixmap>
+#include <QColorDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
@@ -41,12 +42,20 @@ signals:
     void switchToolTo(int toolIndex);
     void saveSprite(QString filename);
     void loadJason(QString filepath);
+private slots:
+    void on_colorButton_clicked();
+
 private:
     Ui::Viewer *ui;
     QPixmap canvas;
     QImage image;
+    QPoint drawingPivot;
+    QPoint movePivot;
+    QPoint pixelPos;
+    int pixelSize;
+    int pixelOffset;
     void mousePressEvent(QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
-    void mouseReleaseEvent(QMouseEvent *);
+    void wheelEvent(QWheelEvent *);
 };
 #endif // VIEWER_H

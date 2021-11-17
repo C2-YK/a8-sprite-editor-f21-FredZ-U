@@ -2,7 +2,7 @@
 
 Connecter::Connecter()
 {
-    //targetSprite = Sprite(300, 500);
+    targetSprite = Sprite(20, 20);
     //set target sprite
     filesystem.setSprite(&targetSprite);
     previewer.setSprite(&targetSprite);
@@ -12,6 +12,7 @@ Connecter::Connecter()
     connectViewToPreviewer();
     connectViewToSpriteEditor();
     connectSpriteEditorToPreviewer();
+    spriteEditor.updatePreviewer();
 }
 
 void Connecter::show(){
@@ -39,7 +40,6 @@ void Connecter::connectViewToSpriteEditor(){
     QObject::connect(&viewer, &Viewer::useToolOn, &spriteEditor, &SpriteEditor::useToolOn);
     QObject::connect(&viewer, &Viewer::switchToolTo, &spriteEditor, &SpriteEditor::switchToolTo);
     QObject::connect(&viewer, &Viewer::setBrushColor, &spriteEditor, &SpriteEditor::setBrushColor);
-    QObject::connect(&viewer, &Viewer::setBrushSize, &spriteEditor, &SpriteEditor::setBrushSize);
 }
 
 void Connecter::connectSpriteEditorToPreviewer(){
