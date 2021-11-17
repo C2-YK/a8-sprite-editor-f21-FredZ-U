@@ -90,3 +90,10 @@ void Viewer::paintEvent(QPaintEvent *){
     }
 
 }
+
+void Viewer::on_colorButton_clicked()
+{
+    QColor color = QColorDialog::getColor(Qt::white);
+    emit setBrushColor(color);
+}
+

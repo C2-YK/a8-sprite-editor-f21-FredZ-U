@@ -43,7 +43,7 @@
       <x>0</x>
       <y>30</y>
       <width>31</width>
-      <height>116</height>
+      <height>146</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -93,6 +93,17 @@
        <property name="icon">
         <iconset resource="res.qrc">
          <normaloff>:/icon/res/paint-bucket.png</normaloff>:/icon/res/paint-bucket.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="colorButton">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="res.qrc">
+         <normaloff>:/icon/res/paint-board-and-brush.png</normaloff>:/icon/res/paint-board-and-brush.png</iconset>
        </property>
       </widget>
      </item>
