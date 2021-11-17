@@ -31,14 +31,10 @@ Frame::Frame(int height, int width, QImage image){
 
 }
 
-
-Frame::~Frame(){
-
-}
-
 Frame::Frame(const Frame& other){
     height = other.height;
     width = other.width;
+    image = QImage(other.image);
 
 }
 Frame& Frame::operator=(Frame other){
