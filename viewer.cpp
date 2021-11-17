@@ -123,4 +123,5 @@ void Viewer::addItemToFrameList(){
 
 void Viewer::onSliderValueChangedSlot(int value){
     ui->FPSLabel->setText( QString("%1 FPS").arg(value));
+    emit setPlaybackSpeed(value);
 }

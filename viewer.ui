@@ -37,7 +37,7 @@
      <string>Add Frame</string>
     </property>
     <property name="icon">
-     <iconset resource="res.qrc">
+     <iconset>
       <normaloff>:/icon/res/plus-symbol-button.png</normaloff>:/icon/res/plus-symbol-button.png</iconset>
     </property>
     <property name="iconSize">
@@ -68,7 +68,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="res.qrc">
+        <iconset>
          <normaloff>:/icon/res/big-paint-brush.png</normaloff>:/icon/res/big-paint-brush.png</iconset>
        </property>
       </widget>
@@ -79,7 +79,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="res.qrc">
+        <iconset>
          <normaloff>:/icon/res/eraser.png</normaloff>:/icon/res/eraser.png</iconset>
        </property>
       </widget>
@@ -90,7 +90,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="res.qrc">
+        <iconset>
          <normaloff>:/icon/res/color-picker.png</normaloff>:/icon/res/color-picker.png</iconset>
        </property>
       </widget>
@@ -101,7 +101,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="res.qrc">
+        <iconset>
          <normaloff>:/icon/res/paint-bucket.png</normaloff>:/icon/res/paint-bucket.png</iconset>
        </property>
       </widget>
@@ -112,7 +112,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="res.qrc">
+        <iconset>
          <normaloff>:/icon/res/paint-board-and-brush.png</normaloff>:/icon/res/paint-board-and-brush.png</iconset>
        </property>
       </widget>
@@ -130,6 +130,9 @@
     </property>
     <property name="minimum">
      <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>24</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -177,7 +180,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="res.qrc">
+        <iconset>
          <normaloff>:/icon/res/play-button-arrowhead.png</normaloff>:/icon/res/play-button-arrowhead.png</iconset>
        </property>
       </widget>
@@ -188,7 +191,7 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset resource="res.qrc">
+        <iconset>
          <normaloff>:/icon/res/pause.png</normaloff>:/icon/res/pause.png</iconset>
        </property>
       </widget>
@@ -232,8 +235,6 @@
    </property>
   </action>
  </widget>
- <resources>
-  <include location="res.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
