@@ -9,7 +9,6 @@ Viewer::Viewer(QWidget *parent)
     drawingPivot = QPoint(40,40);
     pixelSize = 20;
     pixelOffset = 1;
-
     addItemToFrameList();
 
     connect(ui->addFrame, &QPushButton::released, this, &Viewer::on_addFrameButton_Clicked);
@@ -40,8 +39,7 @@ void Viewer::playback(const QImage &frameImage){
 }
 void Viewer::updateEditor(const QImage &frameImage, int editingTarget){
     image = frameImage;
-    QPixmap p = QPixmap::fromImage(frameImage);
-    p.scaled(10, 10);
+    QPixmap p = QPixmap::fromImage(frameImage.scaled(QSize(50, 50), Qt::KeepAspectRatio));
     frameList[editingTarget]->setIcon(QIcon(p));
     update();
 
@@ -118,6 +116,6 @@ void Viewer::addItemToFrameList(){
     item->setText("test");
     item->setData(0, frameList.size());
     ui->listWidget->addItem(item);
-    ui->listWidget->setIconSize(QSize(16,16));
+    ui->listWidget->setIconSize(QSize(50,50));
     frameList.append(item);
 }
