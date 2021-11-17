@@ -9,7 +9,15 @@ Viewer::Viewer(QWidget *parent)
     drawingPivot = QPoint(40,40);
     pixelSize = 20;
     pixelOffset = 1;
+    addItemToFrameList();
 
+    connect(ui->addFrame, &QPushButton::released, this, &Viewer::on_addFrameButton_Clicked);
+    connect(ui->playButton, &QPushButton::released, this, [this](){
+        emit startPlayback(true);});
+    connect(ui->pauseBotton, &QPushButton::released, this, [this](){
+        emit startPlayback(false);});
+    connect(ui->listWidget, &QListWidget::itemClicked, this, [this](QListWidgetItem * item){
+        emit setEditingFrame(item->data(0).toInt());});
     connect(ui->pencilButton, &QPushButton::released, this, [this](){
         emit switchToolTo(0);});
     connect(ui->eraserButton, &QPushButton::released, this, [this](){
@@ -26,11 +34,13 @@ Viewer::~Viewer()
 }
 
 void Viewer::playback(const QImage &frameImage){
-
+    QPixmap p = QPixmap::fromImage(frameImage.scaled(ui->animateLabel->size(), Qt::KeepAspectRatio));
+    ui->animateLabel->setPixmap(p);
 }
-void Viewer::updateEditor(const QImage &frameImage){
-
+void Viewer::updateEditor(const QImage &frameImage, int editingTarget){
     image = frameImage;
+    QPixmap p = QPixmap::fromImage(frameImage.scaled(QSize(50, 50), Qt::KeepAspectRatio));
+    frameList[editingTarget]->setIcon(QIcon(p));
     update();
 
 }
@@ -97,3 +107,15 @@ void Viewer::on_colorButton_clicked()
     emit setBrushColor(color);
 }
 
+void Viewer::on_addFrameButton_Clicked(){
+    addItemToFrameList();
+    emit addFrame();
+}
+void Viewer::addItemToFrameList(){
+    QListWidgetItem *item = new QListWidgetItem;
+    item->setText("test");
+    item->setData(0, frameList.size());
+    ui->listWidget->addItem(item);
+    ui->listWidget->setIconSize(QSize(50,50));
+    frameList.append(item);
+}

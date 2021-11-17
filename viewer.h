@@ -9,7 +9,7 @@
 #include <QMouseEvent>
 #include <QPixmap>
 #include <QColorDialog>
-
+#include <QListWidgetItem>
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
 QT_END_NAMESPACE
@@ -24,7 +24,7 @@ public:
     void paintEvent(QPaintEvent *);
 public slots:
     void playback(const QImage &frameImage);
-    void updateEditor(const QImage &frameImage);
+    void updateEditor(const QImage &frameImage, int editingTarget);
     void saveCallback(bool success);
     void loadCallback(bool success);
 signals:
@@ -44,7 +44,7 @@ signals:
     void loadJason(QString filepath);
 private slots:
     void on_colorButton_clicked();
-
+    void on_addFrameButton_Clicked();
 private:
     Ui::Viewer *ui;
     QPixmap canvas;
@@ -52,10 +52,12 @@ private:
     QPoint drawingPivot;
     QPoint movePivot;
     QPoint pixelPos;
+    QList<QListWidgetItem *> frameList;
     int pixelSize;
     int pixelOffset;
     void mousePressEvent(QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
     void wheelEvent(QWheelEvent *);
+    void addItemToFrameList();
 };
 #endif // VIEWER_H
