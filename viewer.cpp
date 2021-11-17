@@ -13,6 +13,10 @@ Viewer::Viewer(QWidget *parent)
     addItemToFrameList();
 
     connect(ui->addFrame, &QPushButton::released, this, &Viewer::on_addFrameButton_Clicked);
+    connect(ui->playButton, &QPushButton::released, this, [this](){
+        emit startPlayback(true);});
+    connect(ui->pauseBotton, &QPushButton::released, this, [this](){
+        emit startPlayback(false);});
     connect(ui->listWidget, &QListWidget::itemClicked, this, [this](QListWidgetItem * item){
         emit setEditingFrame(item->data(0).toInt());});
     connect(ui->pencilButton, &QPushButton::released, this, [this](){
@@ -31,7 +35,8 @@ Viewer::~Viewer()
 }
 
 void Viewer::playback(const QImage &frameImage){
-
+    QPixmap p = QPixmap::fromImage(frameImage.scaled(ui->animateLabel->size(), Qt::KeepAspectRatio));
+    ui->animateLabel->setPixmap(p);
 }
 void Viewer::updateEditor(const QImage &frameImage, int editingTarget){
     image = frameImage;

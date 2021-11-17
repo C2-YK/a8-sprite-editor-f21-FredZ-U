@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QImage>
-#include <QThread>
+#include <QTimer>
 #include "sprite.h"
 
 class Previewer : public QObject
@@ -16,6 +16,8 @@ public slots:
     void setPlaybackSpeed(int speed);
     void startPlayback(bool);
     void updatePreviewer();
+private slots:
+    void playbackLoop();
 signals:
     void updateEditorWindow(const QImage& updateImage, int editingTarget);
     void playback(const QImage&);
@@ -24,7 +26,6 @@ private:
     int playbackSpeed;
     int playbackPointer;
     bool playing;
-    void playbackLoop();
 };
 
 #endif // PREVIEWER_H

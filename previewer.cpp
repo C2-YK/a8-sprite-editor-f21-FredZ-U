@@ -13,7 +13,12 @@ void Previewer::setPlaybackSpeed(int speed){
     playbackSpeed = speed;
 }
 void Previewer::startPlayback(bool play){
-    playing = play;
+    if(play&&!playing){
+        playing = play;
+        playbackLoop();
+    }else{
+        playing = play;
+    }
 }
 void Previewer::playbackLoop(){
     if(!playing){
@@ -24,8 +29,7 @@ void Previewer::playbackLoop(){
     if(playbackPointer==targetSprite->getMaxFrame()){
         playbackPointer=0;
     }
-    QThread::msleep(1000/playbackSpeed);//fps = 1s / amount of frames
-    playbackLoop();
+    QTimer::singleShot(1000/playbackSpeed, this, SLOT(playbackLoop()) );//fps = 1s / amount of frames
 }
 
 void Previewer::updatePreviewer(){
