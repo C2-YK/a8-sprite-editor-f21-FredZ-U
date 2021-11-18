@@ -46,16 +46,19 @@ signals:
 private slots:
     void on_colorButton_clicked();
     void on_addFrameButton_Clicked();
+    void on_deleteFrameButton_Clicked();
+    void on_moveUpButton_Clicked();
+    void on_moveDowButton_Clicked();
 private:
     Ui::Viewer *ui;
     QPixmap canvas;
     QImage image;
-    QPoint drawingPivot;
+    QPoint drawingPivot = QPoint(160,80);
     QPoint movePivot;
     QPoint pixelPos;
     QList<QListWidgetItem *> frameList;
-    int pixelSize;
-    int pixelOffset;
+    int pixelSize = 20;
+    int pixelOffset = 1;
     void mousePressEvent(QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
     void wheelEvent(QWheelEvent *);

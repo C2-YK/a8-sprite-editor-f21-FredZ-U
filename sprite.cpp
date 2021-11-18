@@ -63,6 +63,9 @@ void Sprite::deleteFrame(){
     delete frames[maxFrame-1];
     frames.pop_back();
     maxFrame--;
+    if(editingFrame==maxFrame){
+        editingFrame=maxFrame-1;
+    }
 }
 
 void Sprite::setEditingTarget(int index){

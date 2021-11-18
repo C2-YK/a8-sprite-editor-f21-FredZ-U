@@ -5,23 +5,14 @@ Frame::Frame()
     height = 200;
     width = 100;
     image = QImage(width, height, QImage::Format_ARGB32);
-    for(int i = 0; i<height; i++){
-        for(int j = 0; j < width; j++){
-            image.setPixel(j, i, QColor(0,0,0, 255).rgba());
-        }
-    }
-
+    fillBackground();
 }
 
 Frame::Frame(int height, int width){
     this->height = height;
     this->width = width;
     image = QImage(width, height, QImage::Format_ARGB32);
-    for(int i = 0; i<height; i++){
-        for(int j = 0; j < width; j++){
-            image.setPixel(j, i, QColor(0,0,0,255).rgba());
-        }
-    }
+    fillBackground();
 }
 
 Frame::Frame(int height, int width, QImage image){
@@ -63,10 +54,10 @@ void Frame::resize(int height, int width){
     }
 }
 void Frame::paintOn(QPoint position, QColor brushColor){
-    image.setPixel(position.x(), position.y(), brushColor.rgba());
+    image.setPixelColor(position.x(), position.y(), brushColor);
 }
 void Frame::eraseOn(QPoint position){
-    image.setPixel(position.x(), position.y(), QColor(0,0,0,0).rgba());
+    image.setPixelColor(position.x(), position.y(), backgroundColor);
 }
 QColor Frame::colorPickOn(QPoint position){
     return image.pixelColor(position.x(), position.y());
@@ -91,5 +82,12 @@ void Frame::bucketRecursive(int x, int y, QColor target, QColor overWrite){
         bucketRecursive(x, y+1, target, overWrite);
         bucketRecursive(x+1, y, target, overWrite);
         bucketRecursive(x, y-1, target, overWrite);
+    }
+}
+void Frame::fillBackground(){
+    for(int i = 0; i<height; i++){
+        for(int j = 0; j < width; j++){
+            image.setPixel(j, i, backgroundColor.rgba());
+        }
     }
 }

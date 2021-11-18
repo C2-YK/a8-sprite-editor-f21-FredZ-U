@@ -23,10 +23,12 @@ void SpriteEditor::addFrame(){
 
 void SpriteEditor::deleteFrame(){
     target->deleteFrame();
+    emit updatePreviewer();
 }
 
 void SpriteEditor::moveFrame(int from, int to){
     target->moveFrame(from, to);
+    emit updatePreviewer();
 }
 
 void SpriteEditor::setBrushColor(QColor color){

@@ -179,9 +179,9 @@
     <property name="geometry">
      <rect>
       <x>800</x>
-      <y>479</y>
+      <y>430</y>
       <width>101</width>
-      <height>61</height>
+      <height>111</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -205,7 +205,7 @@
      <item>
       <widget class="QPushButton" name="delteFrame">
        <property name="text">
-        <string>delete Frame</string>
+        <string>Delete Frame</string>
        </property>
        <property name="icon">
         <iconset resource="res.qrc">
@@ -219,6 +219,24 @@
        </property>
       </widget>
      </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QPushButton" name="moveUp">
+         <property name="text">
+          <string>Move Up</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="moveDown">
+         <property name="text">
+          <string>Move Down</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
     </layout>
    </widget>
   </widget>
@@ -228,7 +246,7 @@
      <x>0</x>
      <y>0</y>
      <width>929</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
