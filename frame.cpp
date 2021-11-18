@@ -45,13 +45,19 @@ int Frame::getWidth(){
 }
 void Frame::resize(int height, int width){
     QImage replacement = QImage(width, height, QImage::Format_ARGB32);
-    for(int i = 0; i < this->width; i++){
-        for(int j = 0; j < this->height; j++){
-            if(i<width && j<height){
+    for(int i = 0; i < width; i++){
+        for(int j = 0; j < height; j++){
+            if(i<this->width && j<this->height){
                 replacement.setPixel(i, j,image.pixel(i, j));
+            }else{
+                replacement.setPixel(i, j,backgroundColor.rgba());
             }
+
         }
     }
+    this->width = width;
+    this->height=height;
+    image = replacement;
 }
 void Frame::paintOn(QPoint position, QColor brushColor){
     image.setPixelColor(position.x(), position.y(), brushColor);

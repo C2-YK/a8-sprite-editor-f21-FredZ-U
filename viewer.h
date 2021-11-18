@@ -14,6 +14,7 @@
 #include <QMessageBox>
 #include <QApplication>
 #include <QProcess>
+#include <QInputDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
@@ -61,6 +62,8 @@ private slots:
     void on_actionOpen_triggered();
 
     void on_actionNew_triggered();
+
+    void on_actionResize_triggered();
 
 private:
     Ui::Viewer *ui;
