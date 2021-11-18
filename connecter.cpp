@@ -31,6 +31,7 @@ void Connecter::connectViewToFilesystem(){
 void Connecter::connectViewToPreviewer(){
     QObject::connect(&previewer, &Previewer::playback, &viewer, &Viewer::playback);
     QObject::connect(&previewer, &Previewer::updateEditorWindow, &viewer, &Viewer::updateEditor);
+    QObject::connect(&previewer, &Previewer::updateFrameList, &viewer, &Viewer::updateFrameList);
     QObject::connect(&viewer, &Viewer::startPlayback, &previewer, &Previewer::startPlayback);
     QObject::connect(&viewer, &Viewer::setPlaybackSpeed, &previewer, &Previewer::setPlaybackSpeed);
 }

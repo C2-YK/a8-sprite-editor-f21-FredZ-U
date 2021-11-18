@@ -187,11 +187,7 @@ void Viewer::on_actionOpen_triggered()
 }
 
 void Viewer::updateFrameList(QList<QImage> icons){
-
-    for(int i = 0; i < icons.size(); i++){
-        delete frameList[i];
-    }
-
+    ui->listWidget->clear();
     frameList = QList<QListWidgetItem*>();
 
     for(int i = 0; i < icons.size();i++){

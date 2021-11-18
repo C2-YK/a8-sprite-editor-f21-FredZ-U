@@ -20,7 +20,6 @@ void FileSystem::setSprite(Sprite* target){
 void FileSystem::loadJason(QString filepath){
 
     QFile loadFile(filepath);
-    qDebug()<<filepath;
 
     if(!loadFile.open(QIODevice::ReadOnly))
     {
@@ -117,26 +116,15 @@ void FileSystem:: spriteReader(const QJsonObject &json, Sprite &sprite)
     {
         QJsonObject frameObject = frameArray[frameIndex].toObject();
         frame = new Frame(frameReader(frameObject,width,height));
-        qDebug()<<frame->getImage();
-        qDebug()<<frame->getImage().pixelColor(0,0).alpha();
-        qDebug()<<frame->getImage().pixelColor(0,0).red();
-        qDebug()<<frame->getImage().pixelColor(0,0).green();
-        qDebug()<<frame->getImage().pixelColor(0,0).blue();
         frames.append(frame);
-        qDebug()<<frames[0];
-        qDebug()<<frames[0]->getImage();
     }
-    qDebug()<<frames[0];
-    qDebug()<<frames[0]->getImage();
     sprite = Sprite(height, width, frames, maxFrame);
 }
 
 Frame FileSystem::frameReader(const QJsonObject &json,int width, int height)
 {
     QString s = json["frame"].toString();
-    //qDebug()<<s;
     QStringList colorList = s.split(QRegularExpression("\\W+"),Qt::SkipEmptyParts);
-    //qDebug()<<colorList;
     int numberOfColors = width*height*4;
     int colorArray[numberOfColors];
     int colorArrayIndex = 0;
@@ -147,10 +135,8 @@ Frame FileSystem::frameReader(const QJsonObject &json,int width, int height)
     }
     int colorMatrix[width][height][4];
     colorArrayIndex = 0;
-    //qDebug()<<colorArrayIndex;
     for(int i = 0; i < width; i++)
     {
-        //qDebug()<<colorArrayIndex;
         for(int j =0; j < height; j++ )
         {
             colorMatrix[i][j][0] = colorArray[colorArrayIndex];
@@ -164,7 +150,6 @@ Frame FileSystem::frameReader(const QJsonObject &json,int width, int height)
         }
 
     }
-    //qDebug()<<colorArrayIndex;
 
     QImage toBeSet(width,height,QImage::Format_ARGB32);
     for(int i = 0; i < width; i++)
@@ -178,11 +163,6 @@ Frame FileSystem::frameReader(const QJsonObject &json,int width, int height)
                                   colorMatrix[i][j][3]));
         }
     }
-//    qDebug()<<toBeSet;
-//    qDebug()<<toBeSet.pixelColor(0,0).alpha();
-//    qDebug()<<toBeSet.pixelColor(0,0).red();
-//    qDebug()<<toBeSet.pixelColor(0,0).green();
-//    qDebug()<<toBeSet.pixelColor(0,0).blue();
     return Frame(height,width,toBeSet);
 
 
