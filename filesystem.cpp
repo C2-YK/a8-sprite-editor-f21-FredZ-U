@@ -17,7 +17,7 @@ void FileSystem::setSprite(Sprite* target){
 
 }
 
-void FileSystem::loadJason(QString filepath,Sprite &sprite){
+void FileSystem::loadJason(QString filepath){
 
     QFile loadFile("../../../"+filepath);
 
@@ -29,7 +29,7 @@ void FileSystem::loadJason(QString filepath,Sprite &sprite){
 
     QByteArray saveData = loadFile.readAll();
     QJsonDocument loadDoc(QJsonDocument::fromJson(saveData));
-    spriteReader(loadDoc.object(),sprite);
+    spriteReader(loadDoc.object(),*sprite);
 }
 
 void FileSystem::saveSprite(QString filename){
@@ -45,6 +45,7 @@ void FileSystem::saveSprite(QString filename){
     spriteWriter(spriteObject);
     QJsonDocument saveDoc(spriteObject);
     saveFile.write(saveDoc.toJson());
+
 }
 
 void FileSystem:: spriteWriter(QJsonObject &json){
@@ -64,7 +65,7 @@ void FileSystem:: spriteWriter(QJsonObject &json){
         }
     }
     json["frames"] = frameArray;
-
+    qDebug()<<"save";
 }
 
 void FileSystem:: frameWriter(QJsonObject &json, const QImage& image)

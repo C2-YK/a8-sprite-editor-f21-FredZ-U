@@ -11,7 +11,7 @@
 #include <QJsonArray>
 #include "sprite.h"
 
-class FileSystem
+class FileSystem : public QObject
 {
     Q_OBJECT
 public:
@@ -19,7 +19,7 @@ public:
     FileSystem();
     void setSprite(Sprite*);
 public slots:
-    void loadJason(QString filepath, Sprite &sprite);
+    void loadJason(QString filepath);
     void saveSprite(QString filename);
 signals:
     void loadCallback(bool success);
@@ -34,3 +34,6 @@ private:
 };
 
 #endif // FILESYSTEM_H
+
+
+
