@@ -155,15 +155,15 @@ void Viewer::onSliderValueChangedSlot(int value){
 
 void Viewer::on_actionSave_triggered()
 {
-    QString filename = QFileDialog::getOpenFileName(
+    /*QString filename = QFileDialog::getOpenFileName(
                 this,
                 tr("Save File"),
                 "C://",
                 "Sprite Editor Project (*.ssp);;"
 
-                );
+                );*/
     changed = false;
-    emit saveSprite(filename);
+    emit saveSprite(QString("test"));
 }
 
 

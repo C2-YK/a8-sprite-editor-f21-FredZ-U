@@ -19,7 +19,8 @@ void FileSystem::setSprite(Sprite* target){
 
 void FileSystem::loadJason(QString filepath){
 
-    QFile loadFile("../../../"+filepath);
+    QFile loadFile(filepath);
+    qDebug()<<filepath;
 
     if(!loadFile.open(QIODevice::ReadOnly))
     {
@@ -35,7 +36,7 @@ void FileSystem::loadJason(QString filepath){
 void FileSystem::saveSprite(QString filename){
 
 
-    QFile saveFile("../../../"+filename);
+    QFile saveFile("C:/Users/MyPC/Desktop/"+filename);
     if(!saveFile.open(QIODevice::WriteOnly))
     {
         qWarning("Could not open save file.");
@@ -65,7 +66,6 @@ void FileSystem:: spriteWriter(QJsonObject &json){
         }
     }
     json["frames"] = frameArray;
-    qDebug()<<"save";
 }
 
 void FileSystem:: frameWriter(QJsonObject &json, const QImage& image)
