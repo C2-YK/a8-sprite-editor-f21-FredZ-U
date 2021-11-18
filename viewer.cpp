@@ -162,6 +162,7 @@ void Viewer::on_actionSave_triggered()
                 "Sprite Editor Project (*.ssp);;"
 
                 );
+    changed = false;
     emit saveSprite(filename);
 }
 
@@ -177,5 +178,36 @@ void Viewer::on_actionOpen_triggered()
                 );
 
     emit loadJason(filename);
+}
+
+
+void Viewer::on_actionNew_triggered()
+{
+    if(changed){
+        QMessageBox msgBox;
+        msgBox.setText("The document has not been modified");
+        msgBox.setInformativeText("Do you want to save your changes?");
+        msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+        msgBox.setDefaultButton(QMessageBox::Save);
+        int ret = msgBox.exec();
+        switch (ret) {
+          case QMessageBox::Save:
+              on_actionSave_triggered();
+              break;
+          case QMessageBox::Discard:
+              break;
+          case QMessageBox::Cancel:
+              return;
+          default:
+              // should never be reached
+            return;
+        }
+
+    }
+
+
+
+    qApp->quit();
+    QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
 }
 

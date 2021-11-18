@@ -11,6 +11,9 @@
 #include <QColorDialog>
 #include <QListWidgetItem>
 #include <QFileDialog>
+#include <QMessageBox>
+#include <QApplication>
+#include <QProcess>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
@@ -44,7 +47,8 @@ signals:
     void useToolOn(QPoint position);
     void switchToolTo(int toolIndex);
     void saveSprite(QString filename);
-    void loadJason(QString filepath);
+    void loadJason(QString filepath);\
+    void reset();
 private slots:
     void on_colorButton_clicked();
     void on_addFrameButton_Clicked();
@@ -54,6 +58,8 @@ private slots:
     void on_actionSave_triggered();
 
     void on_actionOpen_triggered();
+
+    void on_actionNew_triggered();
 
 private:
     Ui::Viewer *ui;

@@ -59,6 +59,10 @@ void SpriteEditor::useToolOn(QPoint position){
 void SpriteEditor::switchToolTo(int tool){
     toolSwitch = tool;
 }
+
+
+
+
 /*
  * private helper
  */
