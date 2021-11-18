@@ -165,10 +165,11 @@ void Viewer::on_actionSave_triggered()
     QString fileDir = QFileDialog::getSaveFileName(
                 this,
                 tr("Choose Directory"),
-                "C://"
+                "C://",
+                "Sprite Editor Project (*.ssp);;"
                 );
     changed = false;
-    emit saveSprite(QString(fileDir + ".ssp"));
+    emit saveSprite(QString(fileDir));
 }
 
 
