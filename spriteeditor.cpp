@@ -62,6 +62,7 @@ void SpriteEditor::switchToolTo(int tool){
 
 void SpriteEditor::resize(int height, int width){
     target->resize(height, width);
+    emit updatePreviewer();
 }
 
 
