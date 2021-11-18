@@ -105,33 +105,31 @@ void FileSystem:: spriteReader(const QJsonObject &json, Sprite &sprite)
 {
     int height = json["height"].toInt();
     int width = json["width"].toInt();
-    sprite.setHeight(height);
-    sprite.setWidth(width);
-    sprite.setMaxFrame(json["numberOfFrames"].toInt());
-    QList<Frame*> toBeSetted;
-    toBeSetted.clear();
+    int maxFrame = json["numberOfFrames"].toInt();
+    QList<Frame*> frames;
+
+    Frame* frame;
+
     QJsonArray frameArray = json["frames"].toArray();
-    //qDebug()<<QStringLiteral("frame array size:").append(QString::number(frameArray.size()));
-    for(int frameIndex = 0; frameIndex < frameArray.size(); ++frameIndex)
+    for(int frameIndex = 0; frameIndex < frameArray.size(); frameIndex++)
     {
         QJsonObject frameObject = frameArray[frameIndex].toObject();
-        Frame frame(height,width);
-        frameReader(frameObject,frame,width,height);
-        qDebug()<<frame.getImage();
-        qDebug()<<frame.getImage().pixelColor(0,0).alpha();
-        qDebug()<<frame.getImage().pixelColor(0,0).red();
-        qDebug()<<frame.getImage().pixelColor(0,0).green();
-        qDebug()<<frame.getImage().pixelColor(0,0).blue();
-        toBeSetted.append(&frame);
-        qDebug()<<toBeSetted[0];
-        qDebug()<<toBeSetted[0]->getImage();
+        frame = new Frame(frameReader(frameObject,width,height));
+        qDebug()<<frame->getImage();
+        qDebug()<<frame->getImage().pixelColor(0,0).alpha();
+        qDebug()<<frame->getImage().pixelColor(0,0).red();
+        qDebug()<<frame->getImage().pixelColor(0,0).green();
+        qDebug()<<frame->getImage().pixelColor(0,0).blue();
+        frames.append(frame);
+        qDebug()<<frames[0];
+        qDebug()<<frames[0]->getImage();
     }
-    qDebug()<<toBeSetted[0];
-    qDebug()<<toBeSetted[0]->getImage();
-    sprite.setFrames(toBeSetted);
+    qDebug()<<frames[0];
+    qDebug()<<frames[0]->getImage();
+    sprite = Sprite(height, width, frames, maxFrame);
 }
 
-void FileSystem::frameReader(const QJsonObject &json, Frame &frame,int width, int height)
+Frame FileSystem::frameReader(const QJsonObject &json,int width, int height)
 {
     QString s = json["frame"].toString();
     //qDebug()<<s;
@@ -183,7 +181,7 @@ void FileSystem::frameReader(const QJsonObject &json, Frame &frame,int width, in
 //    qDebug()<<toBeSet.pixelColor(0,0).red();
 //    qDebug()<<toBeSet.pixelColor(0,0).green();
 //    qDebug()<<toBeSet.pixelColor(0,0).blue();
-    frame = Frame(height,width,toBeSet);
+    return Frame(height,width,toBeSet);
 
 
 }

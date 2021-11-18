@@ -13,19 +13,23 @@
 
 class FileSystem
 {
+    Q_OBJECT
 public:
     FileSystem(Sprite*);
     FileSystem();
     void setSprite(Sprite*);
-public:
+public slots:
     void loadJason(QString filepath, Sprite &sprite);
     void saveSprite(QString filename);
+signals:
+    void loadCallback(bool success);
+    void saveCallback(bool success);
 private:
     Sprite* sprite;
     void spriteWriter(QJsonObject &json);
     void frameWriter(QJsonObject &json,const QImage &image);
     void spriteReader(const QJsonObject &json, Sprite &s);
-    void frameReader(const QJsonObject &json, Frame& frame,int,int);
+    Frame frameReader(const QJsonObject &json,int,int);
     //std::vector<std::vector<std::vector<int>>> getColorMatrix(const QImage &image);
 };
 
