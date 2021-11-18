@@ -3,7 +3,7 @@
 
 Previewer::Previewer()
 {
-    playbackSpeed = 24;
+    playbackSpeed = 1;
     playbackPointer = 0;
 }
 void Previewer::setSprite(Sprite* address){

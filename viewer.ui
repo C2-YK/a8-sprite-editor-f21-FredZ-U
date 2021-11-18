@@ -24,19 +24,6 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="addFrame">
-    <property name="geometry">
-     <rect>
-      <x>810</x>
-      <y>510</y>
-      <width>80</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add Frame</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
@@ -118,21 +105,27 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>24</number>
+    </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QLabel" name="FPSlabel">
+   <widget class="QLabel" name="FPSLabel">
     <property name="geometry">
      <rect>
-      <x>770</x>
+      <x>740</x>
       <y>110</y>
-      <width>21</width>
+      <width>51</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>FPS:</string>
+     <string>1 FPS</string>
     </property>
    </widget>
    <widget class="QLabel" name="animateLabel">
@@ -148,31 +141,103 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="playButton">
+   <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>10</y>
-      <width>80</width>
-      <height>21</height>
+      <x>750</x>
+      <y>0</y>
+      <width>31</width>
+      <height>101</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Play</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QPushButton" name="playButton">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="res.qrc">
+         <normaloff>:/icon/res/play-button-arrowhead.png</normaloff>:/icon/res/play-button-arrowhead.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pauseBotton">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="res.qrc">
+         <normaloff>:/icon/res/pause.png</normaloff>:/icon/res/pause.png</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <widget class="QPushButton" name="pauseBotton">
+   <widget class="QWidget" name="verticalLayoutWidget_3">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>30</y>
-      <width>80</width>
-      <height>21</height>
+      <x>800</x>
+      <y>430</y>
+      <width>101</width>
+      <height>111</height>
      </rect>
     </property>
-    <property name="text">
-     <string>pause</string>
-    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="QPushButton" name="addFrame">
+       <property name="text">
+        <string>Add Frame</string>
+       </property>
+       <property name="icon">
+        <iconset resource="res.qrc">
+         <normaloff>:/icon/res/plus-symbol-button.png</normaloff>:/icon/res/plus-symbol-button.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>8</width>
+         <height>8</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="delteFrame">
+       <property name="text">
+        <string>Delete Frame</string>
+       </property>
+       <property name="icon">
+        <iconset resource="res.qrc">
+         <normaloff>:/icon/res/minus.png</normaloff>:/icon/res/minus.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>8</width>
+         <height>8</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QPushButton" name="moveUp">
+         <property name="text">
+          <string>Move Up</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="moveDown">
+         <property name="text">
+          <string>Move Down</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -181,15 +246,15 @@
      <x>0</x>
      <y>0</y>
      <width>929</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionNew"/>
     <addaction name="actionSave"/>
-    <addaction name="actionSave_as"/>
     <addaction name="actionOpen"/>
    </widget>
    <addaction name="menuFile"/>
@@ -200,14 +265,14 @@
     <string>Save</string>
    </property>
   </action>
-  <action name="actionSave_as">
-   <property name="text">
-    <string>Save as</string>
-   </property>
-  </action>
   <action name="actionOpen">
    <property name="text">
     <string>Open</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
    </property>
   </action>
  </widget>

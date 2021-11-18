@@ -13,6 +13,8 @@ Connecter::Connecter()
     connectViewToSpriteEditor();
     connectSpriteEditorToPreviewer();
     spriteEditor.updatePreviewer();
+
+
 }
 
 void Connecter::show(){
@@ -40,6 +42,8 @@ void Connecter::connectViewToSpriteEditor(){
     QObject::connect(&viewer, &Viewer::useToolOn, &spriteEditor, &SpriteEditor::useToolOn);
     QObject::connect(&viewer, &Viewer::switchToolTo, &spriteEditor, &SpriteEditor::switchToolTo);
     QObject::connect(&viewer, &Viewer::setBrushColor, &spriteEditor, &SpriteEditor::setBrushColor);
+
+
 }
 
 void Connecter::connectSpriteEditorToPreviewer(){

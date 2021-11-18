@@ -10,6 +10,11 @@
 #include <QPixmap>
 #include <QColorDialog>
 #include <QListWidgetItem>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QApplication>
+#include <QProcess>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
 QT_END_NAMESPACE
@@ -27,6 +32,7 @@ public slots:
     void updateEditor(const QImage &frameImage, int editingTarget);
     void saveCallback(bool success);
     void loadCallback(bool success);
+    void onSliderValueChangedSlot(int value);
 signals:
     void setPlaybackSpeed(int speed);
     void startPlayback(bool);
@@ -41,23 +47,34 @@ signals:
     void useToolOn(QPoint position);
     void switchToolTo(int toolIndex);
     void saveSprite(QString filename);
-    void loadJason(QString filepath);
+    void loadJason(QString filepath);\
+    void reset();
 private slots:
     void on_colorButton_clicked();
     void on_addFrameButton_Clicked();
+    void on_deleteFrameButton_Clicked();
+    void on_moveUpButton_Clicked();
+    void on_moveDowButton_Clicked();
+    void on_actionSave_triggered();
+
+    void on_actionOpen_triggered();
+
+    void on_actionNew_triggered();
+
 private:
     Ui::Viewer *ui;
     QPixmap canvas;
     QImage image;
-    QPoint drawingPivot;
+    QPoint drawingPivot = QPoint(160,80);
     QPoint movePivot;
     QPoint pixelPos;
     QList<QListWidgetItem *> frameList;
-    int pixelSize;
-    int pixelOffset;
+    int pixelSize = 20;
+    int pixelOffset = 1;
     void mousePressEvent(QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
     void wheelEvent(QWheelEvent *);
     void addItemToFrameList();
+    bool changed = true;
 };
 #endif // VIEWER_H

@@ -23,8 +23,10 @@ public:
 
 private:
     QImage image;
+    QColor backgroundColor = QColor(255,255,255,255);
     int height;
     int width;
+    void fillBackground();
     void bucketRecursive(int x, int y, QColor target, QColor overWrite);
 };
 
