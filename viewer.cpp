@@ -162,14 +162,13 @@ void Viewer::onSliderValueChangedSlot(int value){
 
 void Viewer::on_actionSave_triggered()
 {
-    QString fileDir = QFileDialog::getExistingDirectory(
+    QString fileDir = QFileDialog::getSaveFileName(
                 this,
                 tr("Choose Directory"),
                 "C://"
-
                 );
     changed = false;
-    emit saveSprite(QString("test"), fileDir);
+    emit saveSprite(QString(fileDir + ".ssp"));
 }
 
 

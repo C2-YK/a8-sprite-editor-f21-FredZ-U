@@ -47,7 +47,7 @@ signals:
     void setBrushSize(int size);
     void useToolOn(QPoint position);
     void switchToolTo(int toolIndex);
-    void saveSprite(QString filename, QString fileDir);
+    void saveSprite(QString filename);
     void loadJason(QString filepath);
     void reset();
 private slots:

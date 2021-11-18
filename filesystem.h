@@ -20,7 +20,7 @@ public:
     void setSprite(Sprite*);
 public slots:
     void loadJason(QString filepath);
-    void saveSprite(QString filename, QString fileDir);
+    void saveSprite(QString filename);
 signals:
     void loadCallback(bool success);
     void saveCallback(bool success);
