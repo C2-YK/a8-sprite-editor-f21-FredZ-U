@@ -47,6 +47,7 @@ void Viewer::updateEditor(const QImage &frameImage, int editingTarget){
     QPixmap p = QPixmap::fromImage(frameImage.scaled(QSize(50, 50), Qt::KeepAspectRatio));
     frameList[editingTarget]->setIcon(QIcon(p));
     update();
+    changed = true;
 
 }
 void Viewer::saveCallback(bool success){

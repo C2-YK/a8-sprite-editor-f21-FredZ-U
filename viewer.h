@@ -69,5 +69,6 @@ private:
     void mouseMoveEvent(QMouseEvent *);
     void wheelEvent(QWheelEvent *);
     void addItemToFrameList();
+    bool changed = true;
 };
 #endif // VIEWER_H
