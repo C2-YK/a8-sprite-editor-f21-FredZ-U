@@ -211,3 +211,10 @@ void Viewer::on_actionNew_triggered()
     QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
 }
 
+
+void Viewer::on_actionResize_triggered()
+{
+    int size = QInputDialog::getInt(this, "Resize", "Canvas Size:");
+    emit resize(size, size);
+}
+

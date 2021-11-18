@@ -7,6 +7,7 @@
 #include "previewer.h"
 #include "viewer.h"
 #include "spriteeditor.h"
+
 /*
  * Connecter is a collection of connecting methods and store static object data
  */
