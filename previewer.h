@@ -16,11 +16,13 @@ public slots:
     void setPlaybackSpeed(int speed);
     void startPlayback(bool);
     void updatePreviewer();
+    void reload();
 private slots:
     void playbackLoop();
 signals:
     void updateEditorWindow(const QImage& updateImage, int editingTarget);
     void playback(const QImage&);
+    void updateFrameList(QList<QImage>);
 private:
     Sprite* targetSprite;
     int playbackSpeed;

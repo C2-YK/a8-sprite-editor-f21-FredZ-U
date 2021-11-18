@@ -35,3 +35,11 @@ void Previewer::playbackLoop(){
 void Previewer::updatePreviewer(){
     emit updateEditorWindow(targetSprite->getEditingImage(), targetSprite->getEditingFrame());
 }
+
+void Previewer::reload(){
+    QList<QImage> icons;
+    for(int i = 0; i < targetSprite->getFrames().size();i++){
+        icons.append(targetSprite->getFrames()[i]->getImage());
+    }
+    emit updateFrameList(icons);
+}

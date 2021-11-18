@@ -53,4 +53,5 @@ void Connecter::connectSpriteEditorToPreviewer(){
 }
 void Connecter::connectFileSystemToPreviewer(){
     QObject::connect(&filesystem, &FileSystem::loadCallback, &previewer, &Previewer::updatePreviewer);
+    QObject::connect(&filesystem, &FileSystem::loadCallback, &previewer, &Previewer::reload);
 }
