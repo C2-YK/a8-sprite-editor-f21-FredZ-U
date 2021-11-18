@@ -33,6 +33,7 @@ public slots:
     void saveCallback(bool success);
     void loadCallback(bool success);
     void onSliderValueChangedSlot(int value);
+    void updateFrameList(QList<QImage>);
 signals:
     void setPlaybackSpeed(int speed);
     void startPlayback(bool);
@@ -46,8 +47,8 @@ signals:
     void setBrushSize(int size);
     void useToolOn(QPoint position);
     void switchToolTo(int toolIndex);
-    void saveSprite(QString filename);
-    void loadJason(QString filepath);\
+    void saveSprite(QString filename, QString fileDir);
+    void loadJason(QString filepath);
     void reset();
 private slots:
     void on_colorButton_clicked();

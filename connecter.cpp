@@ -12,6 +12,8 @@ Connecter::Connecter()
     connectViewToPreviewer();
     connectViewToSpriteEditor();
     connectSpriteEditorToPreviewer();
+    connectFileSystemToPreviewer();
+
     spriteEditor.updatePreviewer();
 
 
@@ -48,4 +50,7 @@ void Connecter::connectViewToSpriteEditor(){
 
 void Connecter::connectSpriteEditorToPreviewer(){
     QObject::connect(&spriteEditor, &SpriteEditor::updatePreviewer, &previewer, &Previewer::updatePreviewer);
+}
+void Connecter::connectFileSystemToPreviewer(){
+    QObject::connect(&filesystem, &FileSystem::loadCallback, &previewer, &Previewer::updatePreviewer);
 }

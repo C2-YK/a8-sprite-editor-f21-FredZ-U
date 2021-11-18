@@ -31,12 +31,13 @@ void FileSystem::loadJason(QString filepath){
     QByteArray saveData = loadFile.readAll();
     QJsonDocument loadDoc(QJsonDocument::fromJson(saveData));
     spriteReader(loadDoc.object(),*sprite);
+    emit loadCallback(true);
 }
 
-void FileSystem::saveSprite(QString filename){
+void FileSystem::saveSprite(QString filename, QString fileDir){
 
 
-    QFile saveFile("C:/Users/MyPC/Desktop/"+filename);
+    QFile saveFile(fileDir+"/"+filename);
     if(!saveFile.open(QIODevice::WriteOnly))
     {
         qWarning("Could not open save file.");
@@ -46,7 +47,7 @@ void FileSystem::saveSprite(QString filename){
     spriteWriter(spriteObject);
     QJsonDocument saveDoc(spriteObject);
     saveFile.write(saveDoc.toJson());
-
+    emit saveCallback(true);
 }
 
 void FileSystem:: spriteWriter(QJsonObject &json){

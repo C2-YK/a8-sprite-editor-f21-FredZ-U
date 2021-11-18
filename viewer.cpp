@@ -10,6 +10,7 @@ Viewer::Viewer(QWidget *parent)
     p.fill(QColor(Qt::black));
     ui->animateLabel->setPixmap(p);
     ui->listWidget->setIconSize(QSize(50,50));
+
     addItemToFrameList();
 
     connect(ui->moveDown, &QPushButton::released, this, &Viewer::on_moveDowButton_Clicked);
@@ -51,10 +52,12 @@ void Viewer::updateEditor(const QImage &frameImage, int editingTarget){
 
 }
 void Viewer::saveCallback(bool success){
-
+    if(success)
+        changed = false;
 }
 void Viewer::loadCallback(bool success){
-
+    if(success)
+        repaint();
 }
 void Viewer::mousePressEvent(QMouseEvent * event){
     if(event->button() == Qt::LeftButton){//if mouse left button clicked
@@ -109,6 +112,7 @@ void Viewer::on_moveUpButton_Clicked(){
     ui->listWidget->setCurrentRow(id-1);
     emit setEditingFrame(id-1);
 }
+
 void Viewer::on_moveDowButton_Clicked(){
     int id = ui->listWidget->currentItem()->data(0).toInt();
     if(id == frameList.size()-1)
@@ -117,6 +121,7 @@ void Viewer::on_moveDowButton_Clicked(){
     ui->listWidget->setCurrentRow(id+1);
     emit setEditingFrame(id+1);
 }
+
 void Viewer::on_colorButton_clicked()
 {
     QColor color = QColorDialog::getColor(Qt::white);
@@ -127,6 +132,7 @@ void Viewer::on_addFrameButton_Clicked(){
     addItemToFrameList();
     emit addFrame();
 }
+
 void Viewer::on_deleteFrameButton_Clicked(){
     if(frameList.size()==1){
         return;
@@ -140,6 +146,7 @@ void Viewer::on_deleteFrameButton_Clicked(){
     frameList.pop_back();
     emit deleteFrame();
 }
+
 void Viewer::addItemToFrameList(){
     QListWidgetItem *item = new QListWidgetItem;
     item->setData(0, frameList.size());
@@ -155,15 +162,14 @@ void Viewer::onSliderValueChangedSlot(int value){
 
 void Viewer::on_actionSave_triggered()
 {
-    /*QString filename = QFileDialog::getOpenFileName(
+    QString fileDir = QFileDialog::getExistingDirectory(
                 this,
-                tr("Save File"),
-                "C://",
-                "Sprite Editor Project (*.ssp);;"
+                tr("Choose Directory"),
+                "C://"
 
-                );*/
+                );
     changed = false;
-    emit saveSprite(QString("test"));
+    emit saveSprite(QString("test"), fileDir);
 }
 
 
@@ -180,6 +186,26 @@ void Viewer::on_actionOpen_triggered()
     emit loadJason(filename);
 }
 
+void Viewer::updateFrameList(QList<QImage> icons){
+
+    for(int i = 0; i < icons.size(); i++){
+        delete frameList[i];
+    }
+
+    frameList = QList<QListWidgetItem*>();
+
+    for(int i = 0; i < icons.size();i++){
+        QListWidgetItem *item = new QListWidgetItem;
+        item->setData(0, frameList.size());
+        ui->listWidget->addItem(item);
+        ui->listWidget->setCurrentItem(item);
+        frameList.append(item);
+
+        image = icons[i];
+        QPixmap p = QPixmap::fromImage(image.scaled(QSize(50, 50), Qt::KeepAspectRatio));
+        frameList[i]->setIcon(QIcon(p));
+    }
+}
 
 void Viewer::on_actionNew_triggered()
 {
