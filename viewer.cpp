@@ -151,3 +151,30 @@ void Viewer::onSliderValueChangedSlot(int value){
     ui->FPSLabel->setText( QString("%1 FPS").arg(value));
     emit setPlaybackSpeed(value);
 }
+
+void Viewer::on_actionSave_triggered()
+{
+    QString filename = QFileDialog::getOpenFileName(
+                this,
+                tr("Save File"),
+                "C://",
+                "Sprite Editor Project (*.ssp);;"
+
+                );
+    emit saveSprite(filename);
+}
+
+
+void Viewer::on_actionOpen_triggered()
+{
+    QString filename = QFileDialog::getOpenFileName(
+                this,
+                tr("Open File"),
+                "C://",
+                "Sprite Editor Project (*.ssp);;"
+
+                );
+
+    emit loadJason(filename);
+}
+

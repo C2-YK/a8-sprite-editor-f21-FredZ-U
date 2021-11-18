@@ -10,6 +10,8 @@
 #include <QPixmap>
 #include <QColorDialog>
 #include <QListWidgetItem>
+#include <QFileDialog>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
 QT_END_NAMESPACE
@@ -49,6 +51,10 @@ private slots:
     void on_deleteFrameButton_Clicked();
     void on_moveUpButton_Clicked();
     void on_moveDowButton_Clicked();
+    void on_actionSave_triggered();
+
+    void on_actionOpen_triggered();
+
 private:
     Ui::Viewer *ui;
     QPixmap canvas;
