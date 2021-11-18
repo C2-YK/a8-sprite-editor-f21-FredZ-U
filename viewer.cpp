@@ -214,7 +214,10 @@ void Viewer::on_actionNew_triggered()
 
 void Viewer::on_actionResize_triggered()
 {
-    int size = QInputDialog::getInt(this, "Resize", "Canvas Size:");
-    emit resize(size, size);
+    int size = QInputDialog::getInt(this, "Resize", "Canvas Size(smallest size is 2):");
+    if(size >=2 ){
+        emit resize(size, size);
+    }
+
 }
 
