@@ -239,6 +239,23 @@
      </item>
     </layout>
    </widget>
+   <widget class="QPushButton" name="playActualSizeButton">
+    <property name="geometry">
+     <rect>
+      <x>660</x>
+      <y>16</y>
+      <width>80</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Actual Size</string>
+    </property>
+    <property name="icon">
+     <iconset resource="res.qrc">
+      <normaloff>:/icon/res/play-button-arrowhead.png</normaloff>:/icon/res/play-button-arrowhead.png</iconset>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

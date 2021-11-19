@@ -19,6 +19,8 @@ Viewer::Viewer(QWidget *parent)
     connect(ui->addFrame, &QPushButton::released, this, &Viewer::on_addFrameButton_Clicked);
     connect(ui->playButton, &QPushButton::released, this, [this](){
         emit startPlayback(true);});
+    connect(ui->playActualSizeButton, &QPushButton::released, this, [this](){
+        emit startPlayback(true);});
     connect(ui->pauseBotton, &QPushButton::released, this, [this](){
         emit startPlayback(false);});
     connect(ui->listWidget, &QListWidget::itemClicked, this, [this](QListWidgetItem * item){
@@ -40,7 +42,13 @@ Viewer::~Viewer()
 }
 
 void Viewer::playback(const QImage &frameImage){
-    QPixmap p = QPixmap::fromImage(frameImage.scaled(ui->animateLabel->size(), Qt::KeepAspectRatio));
+    QPixmap p;
+    if(actualSize){
+        p = QPixmap::fromImage(frameImage);
+    }else{
+        p = QPixmap::fromImage(frameImage.scaled(ui->animateLabel->size(), Qt::KeepAspectRatio));
+    }
+
     ui->animateLabel->setPixmap(p);
 }
 void Viewer::updateEditor(const QImage &frameImage, int editingTarget){
@@ -241,5 +249,17 @@ void Viewer::on_actionResize_triggered()
         emit resize(size, size);
     }
 
+}
+
+
+void Viewer::on_playActualSizeButton_clicked()
+{
+    actualSize = true;
+}
+
+
+void Viewer::on_playButton_clicked()
+{
+    actualSize = false;
 }
 

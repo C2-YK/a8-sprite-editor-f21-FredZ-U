@@ -10,4 +10,9 @@
         <file>res/minus.png</file>
         <file>res/plus-symbol-button.png</file>
     </qresource>
+    <qresource prefix="/SubmitDocument">
+        <file>SubmitDocument/Code_Style_Document.pdf</file>
+        <file>SubmitDocument/Example.ssp</file>
+        <file>SubmitDocument/SpriteEditorIntroduction.mp4</file>
+    </qresource>
 </RCC>

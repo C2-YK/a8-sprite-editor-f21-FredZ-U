@@ -65,6 +65,10 @@ private slots:
 
     void on_actionResize_triggered();
 
+    void on_playActualSizeButton_clicked();
+
+    void on_playButton_clicked();
+
 private:
     Ui::Viewer *ui;
     QPixmap canvas;
@@ -80,5 +84,6 @@ private:
     void wheelEvent(QWheelEvent *);
     void addItemToFrameList();
     bool changed = true;
+    bool actualSize = false;
 };
 #endif // VIEWER_H
