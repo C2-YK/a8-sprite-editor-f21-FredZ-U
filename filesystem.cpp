@@ -1,22 +1,27 @@
 #include "filesystem.h"
 #include <QDebug>
 #include <QDir>
+
+// Default constructor
 FileSystem::FileSystem()
 {
 
 }
 
+// Constructor with Sprite as the parameter
 FileSystem::FileSystem(Sprite* target)
 {
     sprite = target;
 }
 
+// Sprite setter
 void FileSystem::setSprite(Sprite* target){
 
     sprite = target;
 
 }
 
+// Load sprite from file
 void FileSystem::loadJason(QString filepath){
 
     QFile loadFile(filepath);
@@ -33,6 +38,7 @@ void FileSystem::loadJason(QString filepath){
     emit loadCallback(true);
 }
 
+// Save sprite into file
 void FileSystem::saveSprite(QString filename){
 
 
@@ -49,12 +55,13 @@ void FileSystem::saveSprite(QString filename){
     emit saveCallback(true);
 }
 
+// Write sprite in Json formation
 void FileSystem:: spriteWriter(QJsonObject &json){
 
     json["height"] = sprite->getHeight();
     json["width"] = sprite->getWidth();
     json["numberOfFrames"] = sprite->getMaxFrame();
-    int frameIndex;
+    int frameIndex = 0;
     QJsonArray frameArray;
     foreach(Frame* frame, sprite->getFrames())
     {
@@ -70,6 +77,7 @@ void FileSystem:: spriteWriter(QJsonObject &json){
     json["frames"] = frameArray;
 }
 
+// Write frame in Json formation
 void FileSystem:: frameWriter(QJsonObject &json, const QImage& image, int frameIndex)
 {
     int width =image.width();
@@ -109,6 +117,7 @@ void FileSystem:: frameWriter(QJsonObject &json, const QImage& image, int frameI
 
 }
 
+// Read sprite from file in Json formation
 void FileSystem:: spriteReader(const QJsonObject &json, Sprite &sprite)
 {
     int height = json["height"].toInt();
@@ -128,11 +137,13 @@ void FileSystem:: spriteReader(const QJsonObject &json, Sprite &sprite)
     sprite = Sprite(height, width, frames, maxFrame);
 }
 
+// Read frame from file in Json formation
 Frame FileSystem::frameReader(const QJsonObject &json,int width, int height,int frameIndex)
 {
     QString label = QStringLiteral("frame").append(QString::number(frameIndex));
     QString s = json[label].toString();
     QStringList colorList = s.split(QRegularExpression("\\W+"),Qt::SkipEmptyParts);
+    // Convert QStringList into array with int type
     int numberOfColors = width*height*4;
     int colorArray[numberOfColors];
     int colorArrayIndex = 0;
@@ -141,6 +152,7 @@ Frame FileSystem::frameReader(const QJsonObject &json,int width, int height,int 
         colorArray[colorArrayIndex] = string.toInt();
         colorArrayIndex++;
     }
+    // Convert int array into 3D matrix
     int colorMatrix[width][height][4];
     colorArrayIndex = 0;
     for(int i = 0; i < width; i++)
@@ -156,9 +168,8 @@ Frame FileSystem::frameReader(const QJsonObject &json,int width, int height,int 
             colorMatrix[i][j][3] = colorArray[colorArrayIndex];
             colorArrayIndex++;
         }
-
     }
-
+    // Assign matrix into pixel
     QImage toBeSet(width,height,QImage::Format_ARGB32);
     for(int i = 0; i < width; i++)
     {
@@ -172,8 +183,6 @@ Frame FileSystem::frameReader(const QJsonObject &json,int width, int height,int 
         }
     }
     return Frame(height,width,toBeSet);
-
-
 }
 
 
