@@ -54,6 +54,7 @@ void FileSystem:: spriteWriter(QJsonObject &json){
     json["height"] = sprite->getHeight();
     json["width"] = sprite->getWidth();
     json["numberOfFrames"] = sprite->getMaxFrame();
+    int frameIndex;
     QJsonArray frameArray;
     foreach(Frame* frame, sprite->getFrames())
     {
@@ -61,14 +62,14 @@ void FileSystem:: spriteWriter(QJsonObject &json){
         {
             QJsonObject frameObject;
             QImage target = frame->getImage();
-            frameWriter(frameObject,target);
+            frameWriter(frameObject,target,frameIndex);
             frameArray.append(frameObject);
         }
     }
     json["frames"] = frameArray;
 }
 
-void FileSystem:: frameWriter(QJsonObject &json, const QImage& image)
+void FileSystem:: frameWriter(QJsonObject &json, const QImage& image, int frameIndex)
 {
     int width =image.width();
     int height = image.height();
@@ -86,8 +87,10 @@ void FileSystem:: frameWriter(QJsonObject &json, const QImage& image)
     QString frameInfo;
     for(int i = 0; i < width; i++)
     {
+        frameInfo.append("[");
         for(int j = 0; j < height; j++ )
         {
+            frameInfo.append("[");
             frameInfo.append(QString::number(colorMatrix[i][j][0]));
             frameInfo.append(" ");
             frameInfo.append(QString::number(colorMatrix[i][j][1]));
@@ -96,9 +99,12 @@ void FileSystem:: frameWriter(QJsonObject &json, const QImage& image)
             frameInfo.append(" ");
             frameInfo.append(QString::number(colorMatrix[i][j][3]));
             frameInfo.append(" ");
+            frameInfo.append("]");
         }
+        frameInfo.append("]");
     }
-    json["frame"] = frameInfo;
+    QString label = QStringLiteral("frame").append(QString::number(frameIndex));
+    json[label] = frameInfo;
 
 }
 
@@ -115,15 +121,16 @@ void FileSystem:: spriteReader(const QJsonObject &json, Sprite &sprite)
     for(int frameIndex = 0; frameIndex < frameArray.size(); frameIndex++)
     {
         QJsonObject frameObject = frameArray[frameIndex].toObject();
-        frame = new Frame(frameReader(frameObject,width,height));
+        frame = new Frame(frameReader(frameObject,width,height,frameIndex));
         frames.append(frame);
     }
     sprite = Sprite(height, width, frames, maxFrame);
 }
 
-Frame FileSystem::frameReader(const QJsonObject &json,int width, int height)
+Frame FileSystem::frameReader(const QJsonObject &json,int width, int height,int frameIndex)
 {
-    QString s = json["frame"].toString();
+    QString label = QStringLiteral("frame").append(QString::number(frameIndex));
+    QString s = json[label].toString();
     QStringList colorList = s.split(QRegularExpression("\\W+"),Qt::SkipEmptyParts);
     int numberOfColors = width*height*4;
     int colorArray[numberOfColors];

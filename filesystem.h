@@ -27,10 +27,9 @@ signals:
 private:
     Sprite* sprite;
     void spriteWriter(QJsonObject &json);
-    void frameWriter(QJsonObject &json,const QImage &image);
+    void frameWriter(QJsonObject &json,const QImage &image,int);
     void spriteReader(const QJsonObject &json, Sprite &s);
-    Frame frameReader(const QJsonObject &json,int,int);
-    //std::vector<std::vector<std::vector<int>>> getColorMatrix(const QImage &image);
+    Frame frameReader(const QJsonObject &json,int,int,int);
 };
 
 #endif // FILESYSTEM_H
