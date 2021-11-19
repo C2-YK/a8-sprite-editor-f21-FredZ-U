@@ -14,6 +14,7 @@
 #include <QMessageBox>
 #include <QApplication>
 #include <QProcess>
+#include <QInputDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Viewer; }
@@ -47,7 +48,7 @@ signals:
     void setBrushSize(int size);
     void useToolOn(QPoint position);
     void switchToolTo(int toolIndex);
-    void saveSprite(QString filename, QString fileDir);
+    void saveSprite(QString filename);
     void loadJason(QString filepath);
     void reset();
 private slots:
@@ -61,6 +62,8 @@ private slots:
     void on_actionOpen_triggered();
 
     void on_actionNew_triggered();
+
+    void on_actionResize_triggered();
 
 private:
     Ui::Viewer *ui;

@@ -21,7 +21,7 @@ public slots:
     void setBrushColor(QColor);
     void useToolOn(QPoint position);
     void switchToolTo(int toolIndex);
-
+    void resize(int height, int width);
 signals:
     void updatePreviewer();
 private:

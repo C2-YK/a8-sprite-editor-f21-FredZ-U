@@ -33,10 +33,10 @@ void FileSystem::loadJason(QString filepath){
     emit loadCallback(true);
 }
 
-void FileSystem::saveSprite(QString filename, QString fileDir){
+void FileSystem::saveSprite(QString filename){
 
 
-    QFile saveFile(fileDir+"/"+filename);
+    QFile saveFile(filename);
     if(!saveFile.open(QIODevice::WriteOnly))
     {
         qWarning("Could not open save file.");

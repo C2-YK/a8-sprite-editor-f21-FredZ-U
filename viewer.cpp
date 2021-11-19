@@ -162,14 +162,14 @@ void Viewer::onSliderValueChangedSlot(int value){
 
 void Viewer::on_actionSave_triggered()
 {
-    QString fileDir = QFileDialog::getExistingDirectory(
+    QString fileDir = QFileDialog::getSaveFileName(
                 this,
                 tr("Choose Directory"),
-                "C://"
-
+                "C://",
+                "Sprite Editor Project (*.ssp);;"
                 );
     changed = false;
-    emit saveSprite(QString("test"), fileDir);
+    emit saveSprite(QString(fileDir));
 }
 
 
@@ -231,5 +231,15 @@ void Viewer::on_actionNew_triggered()
 
     qApp->quit();
     QProcess::startDetached(qApp->arguments()[0], qApp->arguments());
+}
+
+
+void Viewer::on_actionResize_triggered()
+{
+    int size = QInputDialog::getInt(this, "Resize", "Canvas Size(smallest size is 2):");
+    if(size >=2 ){
+        emit resize(size, size);
+    }
+
 }
 
