@@ -64,6 +64,7 @@ void FileSystem:: spriteWriter(QJsonObject &json){
             QImage target = frame->getImage();
             frameWriter(frameObject,target,frameIndex);
             frameArray.append(frameObject);
+            frameIndex++;
         }
     }
     json["frames"] = frameArray;
